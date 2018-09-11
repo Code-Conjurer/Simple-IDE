@@ -2,6 +2,8 @@ package ui;
 
 import ui.windows.ApplicationWindow;
 
+import javax.swing.*;
+
 public class Initalize{
 
     final static int WIDTH = 1000;
@@ -9,7 +11,12 @@ public class Initalize{
 
 
     public static void main(String[] args){
-        new ApplicationWindow(WIDTH, HEIGHT);
+        ApplicationWindow appWin = new ApplicationWindow(WIDTH, HEIGHT);
+
+        //debugging
+        JInternalFrame dummyFrame = new JInternalFrame();
+        appWin.addInternalFrame(dummyFrame);
+
     }
     /*
     static JTextArea mainTextArea;

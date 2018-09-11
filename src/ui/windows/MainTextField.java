@@ -1,4 +1,4 @@
 package ui.windows;
 
-public class MainTextField extends  {
+public class MainTextField {
 }
