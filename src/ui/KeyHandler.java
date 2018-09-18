@@ -1,10 +1,12 @@
 package ui;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+/*
+public class KeyHandler implements KeyListener {
 
-public class KeyHandler {
-
-    public int getKeyCode(KeyEvent e){
+    public int (KeyEvent e){
         return e.getKeyCode();
     }
 }
+*/
