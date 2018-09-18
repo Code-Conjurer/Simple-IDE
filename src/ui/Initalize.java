@@ -14,7 +14,7 @@ final int SIZE_Y = 20;
         screenLog.debugGenerateMatrix();
         screenLog.print();
         String command = "";
-        Scanner sc = new Scanner();
+        Scanner sc = new Scanner(System.in);
         while(true){
             screenLog.print();
             System.out.println("Please enter a command");
