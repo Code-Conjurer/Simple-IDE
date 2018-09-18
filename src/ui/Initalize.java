@@ -1,32 +1,23 @@
 package ui;
 
-
+import unnamed.ScreenMatrix;
 
 public class Initalize{
-
-
-    public static void main(String[] args){
-    }
-    /*
-    static JTextArea mainTextArea;
+final int SIZE_X = 20;
+final int SIZE_Y = 20;
 
     public Initalize(){
-        initializeWindow();
-    }
-
-    private void initializeWindow() {
-
-        setLayout(new BorderLayout());
-        setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setVisible(true);
-        add( new JTextArea(100, 100));
-
+        ScreenMatrix screenLog = new ScreenMatrix(SIZE_X, SIZE_Y);
+        Cursor cursor = new Cursor(SIZE_X, SIZE_Y);
+        screenLog.debugGenerateMatrix();
+        screenLog.print();
+        while(true){
+            screenLog.print();
+            //keyCode = new KeyHandler().getKeyCode();
+        }
     }
 
     public static void main(String[] args){
         new Initalize();
     }
-*/
 }
