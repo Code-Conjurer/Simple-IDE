@@ -5,9 +5,9 @@ import unnamed.Log;
 
 import java.util.Scanner;
 
-public class Initalize{
+public class Initialize {
 
-    public Initalize(){
+    public Initialize(){
         Log log = new Log("new log");
         Scanner sc = new Scanner(System.in);
         CommandHandler com = new CommandHandler(sc, log);
@@ -30,6 +30,6 @@ public class Initalize{
     }
 
     public static void main(String[] args){
-        new Initalize();
+        new Initialize();
     }
 }
