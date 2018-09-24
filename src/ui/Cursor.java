@@ -1,5 +1,5 @@
 package ui;
-
+/*
 import unnamed.ScreenMatrix;
 
 import java.awt.event.KeyEvent;
@@ -73,7 +73,7 @@ public class Cursor {
     public char getCharUnder() {
         return charUnder;
     }
-    */
+
 
     public void setX(int x){
         this.x = x;
@@ -94,4 +94,4 @@ public class Cursor {
         return CURSOR_SYMBOL;
     }
 
-}
+}*/

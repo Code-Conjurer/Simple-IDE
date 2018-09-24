@@ -1,23 +1,31 @@
 package ui;
 
-import unnamed.ScreenMatrix;
+import unnamed.CommandHandler;
+import unnamed.Log;
 
 import java.util.Scanner;
 
 public class Initalize{
-final int SIZE_X = 20;
-final int SIZE_Y = 20;
 
     public Initalize(){
-        ScreenMatrix screenLog = new ScreenMatrix(SIZE_X, SIZE_Y);
-        Cursor cursor = new Cursor(SIZE_X, SIZE_Y);
-        Window window = new Window("window", screenLog);
-        screenLog.debugGenerateMatrix();///////////////////Debug////////////////////////////
-        String command = "";
+        Log log = new Log("new log");
         Scanner sc = new Scanner(System.in);
+        CommandHandler com = new CommandHandler(sc, log);
+        String currentLine = "";
+
+        System.out.println("type `` to enter a command");
+        System.out.println(log.getTitle());
         while(true){
-            screenLog.print();
-            window.update();
+            currentLine = sc.next();
+            if(currentLine.equals("``")) {
+                System.out.println("Enter Command: ");
+                if(com.handleCommand(sc.next()))
+                    break;
+            }else{
+                log.addLine(currentLine);
+            }
+
+            log.printLog();
         }
     }
 

@@ -1,5 +1,5 @@
 package unnamed;
-
+/*
 public class ScreenMatrix{
 
     private int sizeX, sizeY;
@@ -49,3 +49,4 @@ public class ScreenMatrix{
         }
     }
 }
+*/
