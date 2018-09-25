@@ -6,6 +6,7 @@ import unnamed.Log;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class LogTest {
@@ -18,15 +19,22 @@ public class LogTest {
         log = new Log("Log's Title");
     }
 
+    @Test void testAddLineFirst(){
+        log.addLine("new line");
+        assertEquals(1, log.getNumberOfLines());
+    }
+
     @Test
-    public void testAddLine(){
+    public void testAddLineMultiple() {
         assertEquals(0, log.getNumberOfLines());
-        for(int i = 0; i < TEST_LIST_SIZE; i++) {
+        for (int i = 0; i < TEST_LIST_SIZE; i++) {
             log.addLine("new line");
             assertEquals(i + 1, log.getNumberOfLines());
         }
+    }
 
-        //Test that adding a null lines adds empty a String
+    @Test
+    public void testAddLineNull(){
         log = new Log("title");
         log.addLine(null);
         assertTrue(log.getLine(0).equals(""));
@@ -34,42 +42,57 @@ public class LogTest {
     }
 
     @Test
-    public void testChangeLine(){
-        for(int i = 0; i < TEST_LIST_SIZE; i++){
-            log.addLine("new Line : " + i);
-            log.changeLine(i, "changed line : " + i);
-            assertTrue( log.getLine(i).equals("changed line : " + i) );
-        }
+    public void testChangeLineFirst(){
+        log.addLine("first line");
+        log.changeLine(0, "new first line");
+        assertTrue(log.getLine(0).equals("new first line"));
     }
 
     @Test
-    public void testRemoveLine(){
-        //Test that one line can be removed
+    public void testChangeLineMiddle(){
+        setupLogWithValues();
+        log.changeLine(TEST_LIST_SIZE/2, "changed line");
+
+
+    }
+
+    @Test
+    public void testChangeLineLast(){
+        setupLogWithValues();
+        log.changeLine(TEST_LIST_SIZE - 1, "changed line");
+        assertTrue(log.getLine(TEST_LIST_SIZE - 1).equals("changed line"));
+    }
+
+    @Test
+    public void testChangeLineNull(){
+        log.addLine("first line");
+        log.changeLine(0, null);
+        assertTrue(log.getLine(0).equals(""));
+    }
+
+    @Test
+    public void testRemoveLineFirst(){
         log.addLine("new Line");
         log.removeLine(0);
         assertEquals(0, log.getNumberOfLines());
+    }
 
+    @Test
+    public void testRemoveLineMiddle(){
+        log.addLine("1st line");
+        log.addLine("2nd line");
+        log.addLine("3rd line");
+        log.removeLine(1);
+        assertTrue(log.getLine(TEST_LIST_SIZE - 1).equals("3rd line"));
+    }
+
+    @Test
+    public void testRemoveLineLast(){
         setupLogWithValues();
+        log.addLine("last line");
+        log.removeLine(TEST_LIST_SIZE);
+        assertFalse(log.getLine(TEST_LIST_SIZE - 1).equals("last line"));
 
-        //Test removing the first line
-        log.removeLine(0);
-        assertEquals(TEST_LIST_SIZE - 1, log.getNumberOfLines());
-
-        setupLogWithValues();
-
-        //Test removing a line in the middle
-        log.removeLine(TEST_LIST_SIZE/2);
-        assertEquals(TEST_LIST_SIZE - 1, log.getNumberOfLines());
-        log.addLine("new line");//add a line back
-
-        //Test removing lines from the end
-        for(int i = TEST_LIST_SIZE - 1; i > 0 ; i--){
-            assertEquals(log.getNumberOfLines(), i + 1);
-            log.removeLine(i);
-            assertEquals(log.getNumberOfLines(), i);
-        }
-
-        assertEquals(log.getNumberOfLines(), 1);
     }
     private void setupLogWithValues(){
         log = new Log("title");
