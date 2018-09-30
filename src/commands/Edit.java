@@ -14,7 +14,7 @@ public class Edit extends LogCommand{
 
     @Override
     public void run(int lineNumber, String input) {
-
+        log.changeLine(lineNumber, input);
     }
 
 }

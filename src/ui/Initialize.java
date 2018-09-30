@@ -1,7 +1,5 @@
 package ui;
 
-import unnamed.CommandHandler;
-import unnamed.Log;
 import unnamed.ProgramLoop;
 
 import java.util.Scanner;
@@ -9,7 +7,6 @@ import java.util.Scanner;
 public class Initialize {
 
     public Initialize(){
-
         new ProgramLoop().run();
     }
 

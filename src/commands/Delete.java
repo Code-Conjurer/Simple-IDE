@@ -12,7 +12,7 @@ public class Delete extends LogCommand{
 
     @Override
     public void run(int lineNumber, String input){
-
+        log.removeLine(lineNumber);
     }
 
 }

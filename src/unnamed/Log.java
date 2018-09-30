@@ -8,7 +8,7 @@ public class Log{
 
     public Log(String title){
         this.title = title;
-        lineList = new ArrayList<>();
+        lineList = new ArrayList<>(0);
     }
 
     //MODIFIES: this
@@ -26,9 +26,9 @@ public class Log{
     //EFFECTS : replaces string at index with new string, if string is null replaces with empty string
     public void changeLine(int lineIndex, String newLine){
         if(newLine == null)
-            lineList.add(lineIndex, "");
+            lineList.set(lineIndex, "");
         else
-            lineList.add(lineIndex, newLine);
+            lineList.set(lineIndex, newLine);
     }
 
     //REQUIRES: index within bounds of arrayList
@@ -58,11 +58,15 @@ public class Log{
     //REQUIRES: index within bounds of arrayList
     //EFFECTS : prints string element from array list at index as well as the index
     public void printLine(int lineIndex){
+        if(lineList.isEmpty())
+            return;
         System.out.print(lineIndex + ": " + lineList.get(lineIndex));
     }
 
     //EFFECTS : calls printLine method for each element in arrayList
     public void printLog(){
+        if(lineList.isEmpty())
+            return;
         for(int i = 0; i < lineList.size(); i++){
             printLine(i);
             System.out.println();

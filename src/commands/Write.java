@@ -13,7 +13,7 @@ public class Write extends LogCommand{
 
     @Override
     public void run(int lineNumber, String input){
-
+        log.addLine(input);
     }
 
 }

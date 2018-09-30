@@ -29,14 +29,14 @@ public class CommandHandler {
     //TODO: test unknown command
     //TODO: use exceptions
     //TODO: handle invalid input
-    private void handleCommand(String input) {
+    public void handleCommand(String input) {
         //input = input.trim();
         String commandName;
         Command command = null;
         int sectionMarker;
         String[] linesEffected;
 
-        if (!input.substring(0, 2).equals("``")) {
+        if (input.length() < 2 || !input.substring(0, 2).equals("``")) {
             comList[write].run(-1, input);
             return;
         }
@@ -46,8 +46,9 @@ public class CommandHandler {
             return;
         }
 
-        sectionMarker = input.lastIndexOf(" ");
+        sectionMarker = input.indexOf(" ");
         commandName = input.substring(2, sectionMarker).toLowerCase();
+        System.out.println(commandName);
         for (Command c : comList) {
             if (c.getName().equals(commandName)){
                 command = c;
@@ -73,12 +74,20 @@ public class CommandHandler {
         } else {
             linesEffected = new String[1];
             sectionMarker = input.indexOf(' ');
-            linesEffected[0] = input.substring(0, sectionMarker);
+
+            if(sectionMarker == -1)
+                linesEffected[0] = input;
+            else
+                linesEffected[0] = input.substring(0, sectionMarker);
         }
 
-        input = input.substring(sectionMarker + 1);
+        if(sectionMarker == -1)
+            input = null;
+        else
+            input = input.substring(sectionMarker + 1);
+
         for(String s : linesEffected){
-            command.run(Integer.getInteger(s), input);
+            command.run(Integer.parseInt(s), input);
         }
 
 

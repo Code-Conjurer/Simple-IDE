@@ -1,4 +1,4 @@
-package fileStuff;
+/*package fileStuff;
 
 import java.util.ArrayList;
 
@@ -32,3 +32,4 @@ public class TextFile {
     }
 
 }
+*/
