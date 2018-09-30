@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TextFile {
 
-    String fileLocation;
+    private String fileLocation;
 
 
     public TextFile(){
@@ -12,7 +12,7 @@ public class TextFile {
     }
 
     public TextFile(String fileLocation){
-        //stub
+        this.fileLocation
     }
 
     public void write(ArrayList<String> log){

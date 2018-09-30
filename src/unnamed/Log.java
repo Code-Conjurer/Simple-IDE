@@ -3,8 +3,8 @@ package unnamed;
 import java.util.ArrayList;
 
 public class Log{
-    String title;
-    ArrayList<String> lineList;
+    private String title;
+    private ArrayList<String> lineList;
 
     public Log(String title){
         this.title = title;
