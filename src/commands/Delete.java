@@ -17,12 +17,3 @@ public class Delete extends LogCommand{
 
 }
 
-/*
-if(super.isWaiting){
-            super.resumeAfterInput();
-        }else{
-            System.out.println("~~Enter line number to delete~~");
-            super.waitForInput();
-            return;
-        }
- */

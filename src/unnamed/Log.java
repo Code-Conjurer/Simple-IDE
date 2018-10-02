@@ -1,6 +1,7 @@
 package unnamed;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Log{
     private String title;
@@ -42,6 +43,10 @@ public class Log{
     //EFFECTS : returns element of arrayList at index
     public String getLine(int lineIndex){
         return lineList.get(lineIndex);
+    }
+
+    public void LoadData(List<String> data){
+        lineList = (ArrayList)data;
     }
 
     //EFFECTS : returns arrayList size

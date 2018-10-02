@@ -4,7 +4,7 @@ import commands.*;
 
 import java.util.Scanner;
 
-public class ProgramLoop {
+public class ProgramLoop{
 
     private Log log;
     private Scanner inputScanner;
@@ -18,17 +18,21 @@ public class ProgramLoop {
 
     public void run(){
         //String input = "";
+        boolean running = true;
         System.out.println("~~ " + log.getTitle()  + " ~~");
-        while(true){
-            handleInput();
+        while(running){
+            running = handleInput();
 
             log.printLog();
         }
     }
 
     //TODO: Allow for diffrent command formats (``~ # effects) (``~ <# # #> effects) (``~ effects) (``~ #)
-    private void handleInput(){
+    private boolean handleInput(){
         String input = inputScanner.nextLine();
+        if(input.toLowerCase().equals("``quit"))
+            return false;
+
         if (input.length() > 2 && input.substring(0, 2).equals("``") && !input.contains(" ")) {
             input += " ";
 
@@ -41,9 +45,7 @@ public class ProgramLoop {
 
 
         comHam.handleCommand(input);
-
-
-
+        return true;
     }
 
 }

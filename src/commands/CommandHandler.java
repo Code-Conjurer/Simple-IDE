@@ -1,11 +1,12 @@
 package commands;
 
+import models.Command;
 import unnamed.Log;
 
 public class CommandHandler {
     Log log;
-    LogCommand[] comList;
-    private int delete, edit, read, search, write;
+    Command[] comList;//TODO: refactor, Command might have parameters (int, String), (CAN BE REPLACED BY LogCommand)
+    private int delete, edit, read, search, write, save, load;
 
     //TODO: implment a better way of creating/accessing commands (better data structure)
     public CommandHandler(Log log){
@@ -14,13 +15,17 @@ public class CommandHandler {
         read = 2;
         search = 3;
         write = 4;
+        save = 5;
+        load = 6;
 
-        comList = new LogCommand[5];
+        comList = new Command[7];
         comList[delete] = new Delete(log);
         comList[edit] = new Edit(log);
         comList[read] = new Read(log);
         comList[search] = new Search(log);
         comList[write] = new Write(log);
+        comList[save] = new Save(log);
+        comList[load] = new Load(log);
     }
 
 
@@ -30,7 +35,6 @@ public class CommandHandler {
     //TODO: use exceptions
     //TODO: handle invalid input
     public void handleCommand(String input) {
-        //input = input.trim();
         String commandName;
         Command command = null;
         int sectionMarker;
@@ -64,12 +68,13 @@ public class CommandHandler {
         //REMARK: input without + 1 will have " " at char 0
         input = input.substring(sectionMarker + 1);
         if (input.charAt(0) == '<') {
-            sectionMarker = input.charAt('>');
-            if (sectionMarker == -1) {//REMARK: .charAt() returns -1 if char cannot be found
+            input = input.substring(1);//removes '<' from string
+            sectionMarker = input.indexOf('>');//removes '>' from string
+            if (sectionMarker == -1) {//REMARK: .indexOf() returns -1 if char cannot be found
                 System.out.println("~~ '>' not found in range~~");
                 return;
             } else {
-                linesEffected = input.split(" ", sectionMarker);
+                linesEffected = parseLineArgs(input);
             }
         } else {
             linesEffected = new String[1];
@@ -83,22 +88,21 @@ public class CommandHandler {
 
         if(sectionMarker == -1)
             input = null;
-        else
-            input = input.substring(sectionMarker + 1);
-
+        else {
+            input = input.substring(sectionMarker + 1);// + 1 to remove '>'
+            while(input.charAt(0) == ' '){// to remove spaces
+                input = input.substring(1);
+            }
+        }
         for(String s : linesEffected){
             command.run(Integer.parseInt(s), input);
         }
 
+    }
 
-
-        /*
-        logCom.run();
-        while(logCom.getWaiting()){
-            logCom.input(sc.nextLine);
-            logCom.run();
-        }
-        */
+    private String[] parseLineArgs(String input){
+        String temp = input.substring(0, input.indexOf('>'));
+        return temp.split(" ");
     }
 
 }
