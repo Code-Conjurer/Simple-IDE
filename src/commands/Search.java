@@ -1,12 +1,12 @@
 package commands;
 
+import models.LogCommand;
 import unnamed.Log;
 
-public class Search extends LogCommand{
+public class Search extends LogCommand {
 
     public Search(Log log){
-        super.log = log;
-        super.name = "search";
+        super(log, "search");
     }
 
     @Override

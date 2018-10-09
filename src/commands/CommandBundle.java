@@ -3,13 +3,13 @@ package commands;
 import models.Command;
 import unnamed.Log;
 
-public class CommandHandler {
+public class CommandBundle {
     Log log;
     Command[] comList;//TODO: refactor, Command might have parameters (int, String), (CAN BE REPLACED BY LogCommand)
-    private int delete, edit, read, search, write, save, load;
+    private int delete, edit, read, search, write, save, load, compile;
 
     //TODO: implment a better way of creating/accessing commands (better data structure)
-    public CommandHandler(Log log){
+    public CommandBundle(Log log){
         delete = 0;
         edit = 1;
         read = 2;
@@ -17,8 +17,9 @@ public class CommandHandler {
         write = 4;
         save = 5;
         load = 6;
+        compile = 7;
 
-        comList = new Command[7];
+        comList = new Command[8];
         comList[delete] = new Delete(log);
         comList[edit] = new Edit(log);
         comList[read] = new Read(log);
@@ -26,6 +27,7 @@ public class CommandHandler {
         comList[write] = new Write(log);
         comList[save] = new Save(log);
         comList[load] = new Load(log);
+        comList[compile] = new Compile(log);
     }
 
 
@@ -52,7 +54,6 @@ public class CommandHandler {
 
         sectionMarker = input.indexOf(" ");
         commandName = input.substring(2, sectionMarker).toLowerCase();
-        System.out.println(commandName);
         for (Command c : comList) {
             if (c.getName().equals(commandName)){
                 command = c;
@@ -104,5 +105,6 @@ public class CommandHandler {
         String temp = input.substring(0, input.indexOf('>'));
         return temp.split(" ");
     }
+
 
 }

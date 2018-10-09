@@ -1,15 +1,13 @@
 package commands;
 
+import models.LogCommand;
 import unnamed.Log;
 
-import java.util.Scanner;
-
-public class Edit extends LogCommand{
+public class Edit extends LogCommand {
 
 
     public Edit(Log log){
-        super.log = log;
-        super.name = "edit";
+        super(log, "edit");
     }
 
     @Override

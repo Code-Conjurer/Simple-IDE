@@ -8,11 +8,11 @@ public class ProgramLoop{
 
     private Log log;
     private Scanner inputScanner;
-    private CommandHandler comHam;
+    private CommandBundle comHam;
 
     public ProgramLoop() {
         log = new Log("new log");
-        comHam = new CommandHandler(log);
+        comHam = new CommandBundle(log);
         inputScanner = new Scanner(System.in);
     }
 

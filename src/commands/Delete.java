@@ -1,13 +1,13 @@
 package commands;
 
+import models.LogCommand;
 import unnamed.Log;
 
-public class Delete extends LogCommand{
+public class Delete extends LogCommand {
 
 
     public Delete(Log log) {
-        super.log = log;
-        super.name = "delete";
+        super(log, "delete");
     }
 
     @Override

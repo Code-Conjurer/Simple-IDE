@@ -1,8 +1,15 @@
 package models;
 
-public interface Command{
+public abstract class Command{
+    protected String name;
 
-    void run(int lineNumber, String input);
+    public Command(String name){
+        this.name = name;
+    }
+
+    abstract public void run(int lineNumber, String input);
     //String prompt();
-    String getName();
+    public String getName(){
+        return name;
+    }
 }

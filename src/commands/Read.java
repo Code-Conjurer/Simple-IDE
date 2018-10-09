@@ -1,12 +1,12 @@
 package commands;
 
+import models.LogCommand;
 import unnamed.Log;
 
-public class Read extends LogCommand{
+public class Read extends LogCommand {
 
     public Read(Log log) {
-        super.log = log;
-        super.name = "read";
+        super(log, "read");
     }
 
     @Override

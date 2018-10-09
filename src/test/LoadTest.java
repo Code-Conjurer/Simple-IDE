@@ -1,12 +1,10 @@
 package test;
 
-import commands.CommandHandler;
+import commands.CommandBundle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import unnamed.Log;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,10 +35,10 @@ public class LoadTest {
         testList.add("3");
         log.LoadData(testList);
 
-        new CommandHandler(log).handleCommand("``save -1 " + fileName);
+        new CommandBundle(log).handleCommand("``save -1 " + fileName);
 
         log = new Log("new name");
-        new CommandHandler(log).handleCommand("``load -1 " + fileName);
+        new CommandBundle(log).handleCommand("``load -1 " + fileName);
         compare();
 
     }
@@ -53,10 +51,10 @@ public class LoadTest {
         testList.add("3");
         log.LoadData(testList);
 
-        new CommandHandler(log).handleCommand("``save -1 " + fileName);
+        new CommandBundle(log).handleCommand("``save -1 " + fileName);
 
         log = new Log("new name");
-        new CommandHandler(log).handleCommand("``load -1 " + fileName);
+        new CommandBundle(log).handleCommand("``load -1 " + fileName);
         compare();
     }
 
@@ -69,10 +67,10 @@ public class LoadTest {
         }
         log.LoadData(testList);
 
-        new CommandHandler(log).handleCommand("``save -1 " + fileName);
+        new CommandBundle(log).handleCommand("``save -1 " + fileName);
 
         log = new Log("new name");
-        new CommandHandler(log).handleCommand("``load -1 " + fileName);
+        new CommandBundle(log).handleCommand("``load -1 " + fileName);
         compare();
     }
 

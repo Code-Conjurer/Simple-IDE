@@ -1,20 +1,16 @@
 package commands;
 
-import models.Command;
-import models.Saveable;
+import models.LogCommand;
 import unnamed.Log;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class Save implements Command, Saveable{
-    Log log;
-    String name;
+public class Save extends LogCommand {
     PrintWriter writer;
 
     public Save(Log log) {
-        this.log = log;
-        name = "save";
+        super(log, "save");
     }
 
     @Override
@@ -31,17 +27,10 @@ public class Save implements Command, Saveable{
         writer.close();
     }
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-
     public PrintWriter makeWriter(String fileLoc) throws IOException{
         return new PrintWriter(fileLoc);
     }
 
-    @Override
     public void write(PrintWriter writer) {
         for(int i = 0; i < log.getNumberOfLines(); i++){
             writer.println(log.getLine(i));

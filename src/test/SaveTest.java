@@ -1,6 +1,6 @@
 package test;
 
-import commands.CommandHandler;
+import commands.CommandBundle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import unnamed.Log;
@@ -38,7 +38,7 @@ public class SaveTest {
         testList.add("3");
         log.LoadData(testList);
 
-        new CommandHandler(log).handleCommand("``save -1 " + fileName);
+        new CommandBundle(log).handleCommand("``save -1 " + fileName);
         try {
             compareList = (ArrayList)Files.readAllLines(Paths.get(fileName));
         }catch (Exception e){}
@@ -53,7 +53,7 @@ public class SaveTest {
         testList.add("3");
         log.LoadData(testList);
 
-        new CommandHandler(log).handleCommand("``save -1 " + fileName);
+        new CommandBundle(log).handleCommand("``save -1 " + fileName);
         try {
             compareList = (ArrayList)Files.readAllLines(Paths.get(fileName));
         }catch (Exception e){}
@@ -67,7 +67,7 @@ public class SaveTest {
         }
         log.LoadData(testList);
 
-        new CommandHandler(log).handleCommand("``save -1 " + fileName);
+        new CommandBundle(log).handleCommand("``save -1 " + fileName);
         try {
             compareList = (ArrayList)Files.readAllLines(Paths.get(fileName));
         }catch (Exception e){}
