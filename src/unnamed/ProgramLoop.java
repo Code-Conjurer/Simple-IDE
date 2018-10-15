@@ -17,17 +17,15 @@ public class ProgramLoop{
     }
 
     public void run(){
-        //String input = "";
         boolean running = true;
         System.out.println("~~ " + log.getTitle()  + " ~~");
         while(running){
             running = handleInput();
-
             log.printLog();
         }
     }
 
-    //TODO: Allow for diffrent command formats (``~ # effects) (``~ <# # #> effects) (``~ effects) (``~ #)
+    //TODO: Allow for different command formats (``~ # effects) (``~ <# # #> effects) (``~ effects) (``~ #)
     private boolean handleInput(){
         String input = inputScanner.nextLine();
         if(input.toLowerCase().equals("``quit"))
@@ -42,7 +40,6 @@ public class ProgramLoop{
             System.out.println("~~Enter Effects~~");
             input += inputScanner.nextLine() + " ";
             }
-
 
         comHam.handleCommand(input);
         return true;
