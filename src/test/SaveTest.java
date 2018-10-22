@@ -1,5 +1,6 @@
 package test;
 
+import Exceptions.CommandNotFoundException;
 import commands.CommandBundle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SaveTest {
+public class SaveTest{
 
     Log log;
     ArrayList<String> testList;
@@ -38,7 +39,11 @@ public class SaveTest {
         testList.add("3");
         log.LoadData(testList);
 
-        new CommandBundle(log).handleCommand("``save -1 " + fileName);
+        try {
+            new CommandBundle(log).handleCommand("``save -1 " + fileName);
+        } catch (CommandNotFoundException e) {
+            e.printStackTrace();
+        }
         try {
             compareList = (ArrayList)Files.readAllLines(Paths.get(fileName));
         }catch (Exception e){}
@@ -53,7 +58,11 @@ public class SaveTest {
         testList.add("3");
         log.LoadData(testList);
 
-        new CommandBundle(log).handleCommand("``save -1 " + fileName);
+        try {
+            new CommandBundle(log).handleCommand("``save -1 " + fileName);
+        } catch (CommandNotFoundException e) {
+            e.printStackTrace();
+        }
         try {
             compareList = (ArrayList)Files.readAllLines(Paths.get(fileName));
         }catch (Exception e){}
@@ -67,7 +76,11 @@ public class SaveTest {
         }
         log.LoadData(testList);
 
-        new CommandBundle(log).handleCommand("``save -1 " + fileName);
+        try {
+            new CommandBundle(log).handleCommand("``save -1 " + fileName);
+        } catch (CommandNotFoundException e) {
+            e.printStackTrace();
+        }
         try {
             compareList = (ArrayList)Files.readAllLines(Paths.get(fileName));
         }catch (Exception e){}

@@ -1,12 +1,13 @@
 package commands;
 
 import models.LogCommand;
+import models.SingleArgCommand;
 import unnamed.Log;
 
 import javax.tools.JavaCompiler;
 import java.io.PrintWriter;
 
-public class Compile extends LogCommand {
+public class Compile extends SingleArgCommand {
 
     private PrintWriter pr;
 
@@ -16,7 +17,7 @@ public class Compile extends LogCommand {
 
 
         //TODO: handle java.exe being in other locations, and of other versions
-    public void run ( int lineNumber, String input){
+    public void run (String input){
             /////////////////////////////////////////////TODO:allow blank input for unsaved log
         try {
             Process p = Runtime.getRuntime().exec("cmd.exe /c start dir");

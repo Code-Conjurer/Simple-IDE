@@ -1,5 +1,6 @@
 package test;
 
+import Exceptions.CommandNotFoundException;
 import commands.CommandBundle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,10 +36,18 @@ public class LoadTest {
         testList.add("3");
         log.LoadData(testList);
 
-        new CommandBundle(log).handleCommand("``save -1 " + fileName);
+        try {
+            new CommandBundle(log).handleCommand("``save -1 " + fileName);
+        } catch (CommandNotFoundException e) {
+            e.printStackTrace();
+        }
 
         log = new Log("new name");
-        new CommandBundle(log).handleCommand("``load -1 " + fileName);
+        try {
+            new CommandBundle(log).handleCommand("``load -1 " + fileName);
+        } catch (CommandNotFoundException e) {
+            e.printStackTrace();
+        }
         compare();
 
     }
@@ -51,10 +60,18 @@ public class LoadTest {
         testList.add("3");
         log.LoadData(testList);
 
-        new CommandBundle(log).handleCommand("``save -1 " + fileName);
+        try {
+            new CommandBundle(log).handleCommand("``save -1 " + fileName);
+        } catch (CommandNotFoundException e) {
+            e.printStackTrace();
+        }
 
         log = new Log("new name");
-        new CommandBundle(log).handleCommand("``load -1 " + fileName);
+        try {
+            new CommandBundle(log).handleCommand("``load -1 " + fileName);
+        } catch (CommandNotFoundException e) {
+            e.printStackTrace();
+        }
         compare();
     }
 
@@ -67,10 +84,18 @@ public class LoadTest {
         }
         log.LoadData(testList);
 
-        new CommandBundle(log).handleCommand("``save -1 " + fileName);
+        try {
+            new CommandBundle(log).handleCommand("``save -1 " + fileName);
+        } catch (CommandNotFoundException e) {
+            e.printStackTrace();
+        }
 
         log = new Log("new name");
-        new CommandBundle(log).handleCommand("``load -1 " + fileName);
+        try {
+            new CommandBundle(log).handleCommand("``load -1 " + fileName);
+        } catch (CommandNotFoundException e) {
+            e.printStackTrace();
+        }
         compare();
     }
 

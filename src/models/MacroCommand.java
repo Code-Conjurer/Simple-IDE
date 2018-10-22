@@ -1,6 +1,9 @@
 package models;
 
-public abstract class MacroCommand{
+public abstract class MacroCommand extends Command {
 
-    public void
+    public MacroCommand(String name) {
+        super(name);
+    }
+
 }

@@ -1,5 +1,6 @@
 package unnamed;
 
+import Exceptions.CommandNotFoundException;
 import commands.*;
 
 import java.util.Scanner;
@@ -39,9 +40,13 @@ public class ProgramLoop{
 
             System.out.println("~~Enter Effects~~");
             input += inputScanner.nextLine() + " ";
-            }
+        }
 
-        comHam.handleCommand(input);
+        try {
+            comHam.handleCommand(input);
+        }catch(CommandNotFoundException e){
+            System.out.println("~~Command not Found~~");
+        }
         return true;
     }
 

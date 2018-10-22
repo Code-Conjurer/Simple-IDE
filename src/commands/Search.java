@@ -1,9 +1,10 @@
 package commands;
 
+import models.LineCommand;
 import models.LogCommand;
 import unnamed.Log;
 
-public class Search extends LogCommand {
+public class Search extends LineCommand {
 
     public Search(Log log){
         super(log, "search");

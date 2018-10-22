@@ -1,12 +1,13 @@
 package commands;
 
 import models.LogCommand;
+import models.SingleArgCommand;
 import unnamed.Log;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class Save extends LogCommand {
+public class Save extends SingleArgCommand {
     PrintWriter writer;
 
     public Save(Log log) {
@@ -14,7 +15,7 @@ public class Save extends LogCommand {
     }
 
     @Override
-    public void run(int vestigial, String fileLoc){
+    public void run(String fileLoc){
         try{
             writer = makeWriter(fileLoc);
         }catch(Exception e){

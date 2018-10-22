@@ -1,9 +1,9 @@
 package commands;
 
-import models.LogCommand;
+import models.LineCommand;
 import unnamed.Log;
 
-public class Edit extends LogCommand {
+public class Edit extends LineCommand {
 
 
     public Edit(Log log){
