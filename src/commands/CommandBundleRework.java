@@ -3,13 +3,13 @@ package commands;
 import models.Command;
 import unnamed.Log;
 
-public class CommandBundle {
+public class CommandBundleRework {
     Log log;
     Command[] comList;//TODO: refactor, Command might have parameters (int, String), (CAN BE REPLACED BY LogCommand)
     private int delete, edit, read, search, write, save, load, compile;
 
     //TODO: implment a better way of creating/accessing commands (better data structure)
-    public CommandBundle(Log log){
+    public CommandBundleRework(Log log){
         delete = 0;
         edit = 1;
         read = 2;

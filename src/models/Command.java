@@ -7,8 +7,8 @@ public abstract class Command{
         this.name = name;
     }
 
-    abstract public void run(int lineNumber, String input);
-    //String prompt();
+    abstract public void run(int arg1, String arg2);
+
     public String getName(){
         return name;
     }
