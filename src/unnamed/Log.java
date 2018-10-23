@@ -77,8 +77,4 @@ public class Log{
             System.out.println();
         }
     }
-
-    public ArrayList<String> getData(){
-        return lineList;
-    }
 }

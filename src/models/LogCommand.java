@@ -11,14 +11,5 @@ public abstract class LogCommand extends Command {
         super(name);
         this.log = log;
     }
-   // public void input(String in){
-        //stub
-    //}
-
-    //@Override
-    public String prompt(){
-        return "Command: " + name;
-    }
-
 
 }
