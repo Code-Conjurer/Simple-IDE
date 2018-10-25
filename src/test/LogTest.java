@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
-public class LogTest {
+/*public class LogTest {
 
     Log log;
     final int TEST_LIST_SIZE = 5;
@@ -104,3 +104,4 @@ public class LogTest {
 
 
 }
+*/

@@ -7,7 +7,7 @@ import unnamed.Log;
 public class Write extends SingleArgCommand {
 
     public Write(Log log){
-        super(log, "search");
+        super(log, "write");
     }
 
     public void run(String input){

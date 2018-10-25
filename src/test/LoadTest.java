@@ -1,4 +1,4 @@
-package test;
+/*package test;
 
 import Exceptions.CommandNotFoundException;
 import unnamed.CommandInterpreter;
@@ -101,4 +101,4 @@ public class LoadTest {
 
 
 
-}
+}*/

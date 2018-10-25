@@ -1,6 +1,7 @@
 package unnamed;
 
 import Exceptions.CommandNotFoundException;
+import commands.*;
 
 import java.util.Scanner;
 
@@ -8,11 +9,13 @@ public class ProgramLoop{
 
     private Log log;
     private Scanner inputScanner;
-    private CommandInterpreter comHam;
+    private CommandBundle logBun;
+    private CommandInterpreter comInter;
 
     public ProgramLoop() {
         log = new Log("new log");
-        comHam = new CommandInterpreter(log);
+        logBun = new LogCommandBundle(log);
+        comInter = new CommandInterpreter(logBun);
         inputScanner = new Scanner(System.in);
     }
 
@@ -31,6 +34,15 @@ public class ProgramLoop{
         if(input.toLowerCase().equals("``quit"))
             return false;
 
+        if(input.length() < 2 || !input.substring(0, 2).equals("``")) {
+            try {
+                comInter.handleCommand("``write " + input);
+                return true;
+            }catch (CommandNotFoundException e){
+                throw new Error();
+            }
+        }
+
         if (input.length() > 2 && input.substring(0, 2).equals("``") && !input.contains(" ")) {
             input += " ";
 
@@ -42,7 +54,7 @@ public class ProgramLoop{
         }
 
         try {
-            comHam.handleCommand(input);
+            comInter.handleCommand(input);
         }catch(CommandNotFoundException e){
             System.out.println("~~Command not Found~~");
         }
