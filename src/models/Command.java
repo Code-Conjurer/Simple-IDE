@@ -10,6 +10,7 @@ public abstract class Command{
     abstract public void run(String... args);
 
     public String getName(){
+
         return name;
     }
     

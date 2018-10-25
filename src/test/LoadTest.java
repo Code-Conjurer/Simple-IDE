@@ -1,7 +1,7 @@
 package test;
 
 import Exceptions.CommandNotFoundException;
-import commands.CommandBundle;
+import unnamed.CommandInterpreter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import unnamed.Log;
@@ -37,14 +37,14 @@ public class LoadTest {
         log.LoadData(testList);
 
         try {
-            new CommandBundle(log).handleCommand("``save -1 " + fileName);
+            new CommandInterpreter(log).handleCommand("``save -1 " + fileName);
         } catch (CommandNotFoundException e) {
             e.printStackTrace();
         }
 
         log = new Log("new name");
         try {
-            new CommandBundle(log).handleCommand("``load -1 " + fileName);
+            new CommandInterpreter(log).handleCommand("``load -1 " + fileName);
         } catch (CommandNotFoundException e) {
             e.printStackTrace();
         }
@@ -61,14 +61,14 @@ public class LoadTest {
         log.LoadData(testList);
 
         try {
-            new CommandBundle(log).handleCommand("``save -1 " + fileName);
+            new CommandInterpreter(log).handleCommand("``save -1 " + fileName);
         } catch (CommandNotFoundException e) {
             e.printStackTrace();
         }
 
         log = new Log("new name");
         try {
-            new CommandBundle(log).handleCommand("``load -1 " + fileName);
+            new CommandInterpreter(log).handleCommand("``load -1 " + fileName);
         } catch (CommandNotFoundException e) {
             e.printStackTrace();
         }
@@ -85,14 +85,14 @@ public class LoadTest {
         log.LoadData(testList);
 
         try {
-            new CommandBundle(log).handleCommand("``save -1 " + fileName);
+            new CommandInterpreter(log).handleCommand("``save -1 " + fileName);
         } catch (CommandNotFoundException e) {
             e.printStackTrace();
         }
 
         log = new Log("new name");
         try {
-            new CommandBundle(log).handleCommand("``load -1 " + fileName);
+            new CommandInterpreter(log).handleCommand("``load -1 " + fileName);
         } catch (CommandNotFoundException e) {
             e.printStackTrace();
         }

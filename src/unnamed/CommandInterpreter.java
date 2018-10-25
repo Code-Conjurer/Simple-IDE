@@ -1,10 +1,11 @@
-package commands;
+package unnamed;
 
 import Exceptions.CommandNotFoundException;
+import commands.*;
 import models.Command;
 import unnamed.Log;
 
-public class CommandBundle {
+public class CommandInterpreter {
     Log log;
     final String COMMAND_SIGNIFIER = "``";
     final int MIN_COMMAND_NAME_LENGTH = 1;
@@ -12,8 +13,8 @@ public class CommandBundle {
     Command[] comList;//TODO: refactor, Command might have parameters (int, String), (CAN BE REPLACED BY LogCommand)
     private int delete, edit, read, search, write, save, load, compile;
 
-    //TODO: implment a better way of creating/accessing commands (better data structure)
-    public CommandBundle(Log log){
+    //TODO: implement a better way of creating/accessing commands (better data structure)
+    public CommandInterpreter(Log log){
         delete = 0;
         edit = 1;
         read = 2;

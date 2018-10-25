@@ -1,7 +1,7 @@
 package test;
 
 import Exceptions.CommandNotFoundException;
-import commands.CommandBundle;
+import unnamed.CommandInterpreter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import unnamed.Log;
@@ -40,7 +40,7 @@ public class SaveTest{
         log.LoadData(testList);
 
         try {
-            new CommandBundle(log).handleCommand("``save -1 " + fileName);
+            new CommandInterpreter(log).handleCommand("``save -1 " + fileName);
         } catch (CommandNotFoundException e) {
             e.printStackTrace();
         }
@@ -59,7 +59,7 @@ public class SaveTest{
         log.LoadData(testList);
 
         try {
-            new CommandBundle(log).handleCommand("``save -1 " + fileName);
+            new CommandInterpreter(log).handleCommand("``save -1 " + fileName);
         } catch (CommandNotFoundException e) {
             e.printStackTrace();
         }
@@ -77,7 +77,7 @@ public class SaveTest{
         log.LoadData(testList);
 
         try {
-            new CommandBundle(log).handleCommand("``save -1 " + fileName);
+            new CommandInterpreter(log).handleCommand("``save -1 " + fileName);
         } catch (CommandNotFoundException e) {
             e.printStackTrace();
         }

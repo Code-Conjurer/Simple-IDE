@@ -1,7 +1,6 @@
 package unnamed;
 
 import Exceptions.CommandNotFoundException;
-import commands.*;
 
 import java.util.Scanner;
 
@@ -9,11 +8,11 @@ public class ProgramLoop{
 
     private Log log;
     private Scanner inputScanner;
-    private CommandBundle comHam;
+    private CommandInterpreter comHam;
 
     public ProgramLoop() {
         log = new Log("new log");
-        comHam = new CommandBundle(log);
+        comHam = new CommandInterpreter(log);
         inputScanner = new Scanner(System.in);
     }
 
