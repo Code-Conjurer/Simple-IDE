@@ -1,21 +1,21 @@
 package commands;
 
-import models.LogCommand;
 import models.SingleArgCommand;
 import unnamed.Log;
 
 import javax.tools.JavaCompiler;
-import java.io.PrintWriter;
+import javax.tools.JavaFileObject;
+import javax.tools.SimpleJavaFileObject;
+import javax.tools.ToolProvider;
+import java.io.File;
 
-public class Compile extends SingleArgCommand {
-
-    private PrintWriter pr;
+public abstract class Compile extends SingleArgCommand {
 
     public Compile(Log log) {
-        super(log, "compile");
+        super(log, "compileLog");
     }
 
-
+/*
         //TODO: handle java.exe being in other locations, and of other versions
     public void run (String input){
             /////////////////////////////////////////////TODO:allow blank input for unsaved log
@@ -34,10 +34,37 @@ public class Compile extends SingleArgCommand {
             pr = new PrintWriter(new OutputStreamWriter(p.getOutputStream()));
             pr.write("cd src\\ui");
             pr.write("javac Initialize.java");
-            pr.close();*/
+            pr.close();*//*
         } catch (Exception e) {
             System.out.println(e);
         }
 
+    }*/
+    public void run(String input){
+
+        try{
+
+        }catch (SecurityException e){
+
+        }
     }
+
+
+
+    /*
+    private String makeJavaFileString(){
+        String stringFile = "";
+        for(int i = 0; i < super.log.getNumberOfLines(); i++){
+            stringFile += super.log.getLine(i);
+        }
+        return stringFile;
+    }*/
+
+    private void initalizeCompiler()throws SecurityException {
+
+        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler(); //gets java compiler, returns null otherwise
+        //JavaFileObject javaFile = new SimpleJavaFileObject();
+
+    }
+
 }

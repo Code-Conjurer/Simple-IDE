@@ -17,7 +17,7 @@ public class LogCommandBundle extends CommandBundle{
 
         Command[] commands = {
                 new Write(log),
-                new Compile(log),
+                //new CompileLog(log),
                 new Delete(log),
                 new Edit(log),
                 new Load(log),

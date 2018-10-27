@@ -6,19 +6,34 @@ import java.util.List;
 public class Log{
     private String title;
     private ArrayList<String> lineList;
+    private Boolean withNewLine;
 
     public Log(String title){
         this.title = title;
         lineList = new ArrayList<>(0);
+        withNewLine = true;
+    }
+
+    public Log(String title, Boolean withNewLine){
+        this.title = title;
+        lineList = new ArrayList<>(0);
+        this.withNewLine = withNewLine;
     }
 
     //MODIFIES: this
-    //EFFECTS : Adds string to ArrayList, if null adds empty string
+    //EFFECTS : Adds input to log. adds a new line character to the end if
     public void addLine(String line){
-        if(line == null)
-            lineList.add("");
-        else
-            lineList.add(line);
+        if(withNewLine) {
+            if (line == null)
+                lineList.add("\\n");
+            else
+                lineList.add(line + "\\n");
+        }else{
+            if (line == null)
+                lineList.add("");
+            else
+                lineList.add(line + "");
+        }
     }
 
     //TODO: add try catch / if statements to keep lineIndex within bounds of log
@@ -26,10 +41,25 @@ public class Log{
     //MODIFIES: this
     //EFFECTS : replaces string at index with new string, if string is null replaces with empty string
     public void changeLine(int lineIndex, String newLine){
-        if(newLine == null)
-            lineList.set(lineIndex, "");
-        else
-            lineList.set(lineIndex, newLine);
+        if(withNewLine) {
+            if (newLine == null)
+                lineList.set(lineIndex, "\\n");
+            else
+                lineList.set(lineIndex, newLine + "\\n");
+        }else{
+            if (newLine == null)
+                lineList.set(lineIndex, "");
+            else
+                lineList.set(lineIndex, newLine);
+        }
+    }
+
+    public void newLineOff(){
+        withNewLine = false;
+    }
+
+    public void newLineOn(){
+        withNewLine = true;
     }
 
     //REQUIRES: index within bounds of arrayList
@@ -43,6 +73,10 @@ public class Log{
     //EFFECTS : returns element of arrayList at index
     public String getLine(int lineIndex){
         return lineList.get(lineIndex);
+    }
+
+    public Boolean getWithNewLine(){
+        return withNewLine;
     }
 
     public void LoadData(List<String> data){
@@ -74,7 +108,8 @@ public class Log{
             return;
         for(int i = 0; i < lineList.size(); i++){
             printLine(i);
-            System.out.println();
+            if(withNewLine)
+                System.out.println();
         }
     }
 }

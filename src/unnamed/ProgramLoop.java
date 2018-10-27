@@ -9,13 +9,11 @@ public class ProgramLoop{
 
     private Log log;
     private Scanner inputScanner;
-    private CommandBundle logBun;
     private CommandInterpreter comInter;
 
     public ProgramLoop() {
-        log = new Log("new log");
-        logBun = new LogCommandBundle(log);
-        comInter = new CommandInterpreter(logBun);
+        log = new Log("new log", false);
+        comInter = new CommandInterpreter(log);
         inputScanner = new Scanner(System.in);
     }
 

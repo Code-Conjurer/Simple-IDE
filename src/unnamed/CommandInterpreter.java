@@ -2,6 +2,7 @@ package unnamed;
 
 import Exceptions.CommandNotFoundException;
 import commands.CommandBundle;
+import commands.LogCommandBundle;
 import models.Command;
 import models.LineCommand;
 import models.SingleArgCommand;
@@ -14,13 +15,24 @@ public class CommandInterpreter {
 
     final String COMMAND_SIGNIFIER = "``";
     final int MIN_COMMAND_NAME_LENGTH = 1;
-    CommandBundle commandBundle;
+    List<CommandBundle> commandBundles;
 
-    //public void CommandInterpreter(CommandBundle... commandBundles){
-    public CommandInterpreter(CommandBundle commandBundle){
-        //this.commandBundles = Arrays.asList(commandBundles);
-        this.commandBundle = commandBundle;
+    public CommandInterpreter(CommandBundle... commandBundles){
+        this.commandBundles = new ArrayList<>();
+        this.commandBundles = Arrays.asList(commandBundles);
     }
+
+    /*public CommandInterpreter(CommandBundle commandBundle){
+        this.commandBundles = new ArrayList<>();
+        commandBundles.add(commandBundle);
+    }*/
+
+    public CommandInterpreter(Log log){
+        this.commandBundles = new ArrayList<>();
+        commandBundles.add(new LogCommandBundle(log));
+
+    }
+
 
     public void handleCommand(String input) throws CommandNotFoundException {
         String commandName;
@@ -89,11 +101,11 @@ public class CommandInterpreter {
 
         Command c = null;
 
-        //for(CommandBundle comBun: commandBundles){
-            c = commandBundle.findCommand(commandName);
+        for(CommandBundle comBun: commandBundles){
+            c = comBun.findCommand(commandName);
             if(c != null)
                 return c;
-        //}
+        }
         throw new CommandNotFoundException();
     }
 
