@@ -8,7 +8,7 @@ public abstract class CommandBundle {
 
     HashMap<String, Command> commandLibrary;
 
-    public Command findCommand(String commandName){
+    public Command getCommand(String commandName){
         return commandLibrary.get(commandName);
     }
 

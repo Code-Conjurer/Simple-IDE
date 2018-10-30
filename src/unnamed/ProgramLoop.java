@@ -10,53 +10,37 @@ public class ProgramLoop{
     private Log log;
     private Scanner inputScanner;
     private CommandInterpreter comInter;
+    private Boolean running;
 
     public ProgramLoop() {
-        log = new Log("new log", false);
+        //log = new Log("new log", false);
+        log = new Log("new log", this);
         comInter = new CommandInterpreter(log);
         inputScanner = new Scanner(System.in);
     }
 
     public void run(){
-        boolean running = true;
         System.out.println("~~ " + log.getTitle()  + " ~~");
         while(running){
-            running = handleInput();
+            handleInput();
             log.printLog();
         }
     }
 
     //TODO: Allow for different command formats (``~ # effects) (``~ <# # #> effects) (``~ effects) (``~ #)
-    private boolean handleInput(){
+    private void handleInput(){
         String input = inputScanner.nextLine();
         if(input.toLowerCase().equals("``quit"))
-            return false;
-
-        if(input.length() < 2 || !input.substring(0, 2).equals("``")) {
-            try {
-                comInter.handleCommand("``write " + input);
-                return true;
-            }catch (CommandNotFoundException e){
-                throw new Error();
-            }
-        }
-
-        if (input.length() > 2 && input.substring(0, 2).equals("``") && !input.contains(" ")) {
-            input += " ";
-
-            System.out.println("~~Enter Line Number~~");
-            input += inputScanner.nextLine() + " ";
-
-            System.out.println("~~Enter Effects~~");
-            input += inputScanner.nextLine() + " ";
-        }
+            running = false;
 
         try {
-            comInter.handleCommand(input);
+            if(input.length() < 3 || !input.substring(0, 2).equals("``")) {
+                comInter.handleCommand("``write " + input);
+            }else
+                comInter.handleCommand(input);
         }catch(CommandNotFoundException e){
             System.out.println("~~Command not Found~~");
         }
-        return true;
     }
 
 }

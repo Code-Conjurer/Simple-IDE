@@ -8,23 +8,18 @@ import models.LineCommand;
 import models.SingleArgCommand;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CommandInterpreter {
 
     final String COMMAND_SIGNIFIER = "``";
+    final int COMMAND_SIG_LENGTH =  COMMAND_SIGNIFIER.length();
     final int MIN_COMMAND_NAME_LENGTH = 1;
     List<CommandBundle> commandBundles;
 
-    public CommandInterpreter(CommandBundle... commandBundles){
+    /*public CommandInterpreter(CommandBundle... commandBundles){
         this.commandBundles = new ArrayList<>();
         this.commandBundles = Arrays.asList(commandBundles);
-    }
-
-    /*public CommandInterpreter(CommandBundle commandBundle){
-        this.commandBundles = new ArrayList<>();
-        commandBundles.add(commandBundle);
     }*/
 
     public CommandInterpreter(Log log){
@@ -33,62 +28,45 @@ public class CommandInterpreter {
 
     }
 
-
     public void handleCommand(String input) throws CommandNotFoundException {
         String commandName;
+        int spaceMarker;
         Command command = null;
-        int sectionMarker;
 
-        sectionMarker = input.indexOf(" ");
-        commandName = input.substring(2, sectionMarker).toLowerCase();//"``someCommand 3 words" -> "someCommands"
-        input = input.substring(sectionMarker + 1);//"``someCommand 3 words" -> "2 words"
+        //Gets command name
+        spaceMarker = input.indexOf(" ");
+        if(spaceMarker == -1)//no " " were found
+            spaceMarker = COMMAND_SIG_LENGTH;
 
-        try {
-            command = findCommand(commandName);
-        }catch (CommandNotFoundException e){
-            throw new CommandNotFoundException();
+        commandName =  input.substring(COMMAND_SIG_LENGTH, spaceMarker).toLowerCase();//"``someCommand 3 words" -> "someCommands"
+        input = input.substring(spaceMarker);//"``someCommand 3 words" -> " 3 words"
+        input = input.trim();
+        //--------------------------
+
+        /*
+        //Recursively handles commands in command args
+        int commandMarker = input.indexOf("``");
+        if(commandMarker != -1) {
+            handleCommand(input.substring(commandMarker));
+            input = input.substring(0, commandMarker);
         }
+        //--------------------------*/
+
+        command = findCommand(commandName);
 
         if(command instanceof SingleArgCommand)
             command.run(input);
 
         if(command instanceof LineCommand){
-            sectionMarker = input.indexOf(" ");
+            spaceMarker = input.indexOf(" ");
 
-            if(sectionMarker == -1)
-                sectionMarker = 1;
+            if(spaceMarker == -1)
+                spaceMarker = 1;
 
-            String lineArg = input.substring(0, sectionMarker).trim();
-            input = input.substring(sectionMarker).trim();
+            String lineArg = input.substring(0, spaceMarker).trim();
+            input = input.substring(spaceMarker).trim();
             command.run(lineArg, input);
         }
-
-
-        /*
-        //REMARK: input without + 1 will have " " at char 0
-        input = input.substring(sectionMarker + 1);
-
-        //linesEffected = new String[1];
-        sectionMarker = input.indexOf(' ');
-
-        //if(sectionMarker == -1)
-        //    linesEffected[0] = input;
-       // else
-        //    linesEffected[0] = input.substring(0, sectionMarker);
-        //}
-/*
-        if(sectionMarker == -1)
-            input = null;
-        else {
-            input = input.substring(sectionMarker + 1);// + 1 to remove '>'
-            while(input.charAt(0) == ' '){// to remove spaces
-                input = input.substring(1);
-            }
-        }*/
-       // for(String s : linesEffected){
-            //command.run(s, input);
-       // }*/
-
     }
 
     /*
@@ -96,13 +74,44 @@ public class CommandInterpreter {
         String temp = input.substring(0, input.indexOf('>'));
         return temp.split(" ");
     }*/
+/*
+    private String parseCommandNameFromInput(){
+        int spaceMarker;
+        String commandName;
+
+        spaceMarker = input.indexOf(" ");
+        if(spaceMarker == -1)//no " " were found
+            spaceMarker = COMMAND_SIG_LENGTH;
+
+        commandName =  input.substring(COMMAND_SIG_LENGTH, spaceMarker).toLowerCase();//"``someCommand 3 words" -> "someCommands"
+        input = input.substring(spaceMarker);//"``someCommand 3 words" -> " 3 words"
+        input = input.trim();
+        return commandName;
+    }
+
+    private void handleCommandsInArgs(String input)throws CommandNotFoundException{
+
+        int commandMarker = input.indexOf("``");
+        if(commandMarker == -1)
+            return;
+
+        //if(commandMarker > 0 && input.indexOf(commandMarker - 1) == '\\')// '\'
+          //  return;
+
+        //try {
+        handleCommand(input.substring(commandMarker));
+        ///}catch(CommandNotFoundException e){
+           // throw e;
+        //}
+
+    }*/
 
     private Command findCommand(String commandName)throws CommandNotFoundException {
 
         Command c = null;
 
         for(CommandBundle comBun: commandBundles){
-            c = comBun.findCommand(commandName);
+            c = comBun.getCommand(commandName);
             if(c != null)
                 return c;
         }

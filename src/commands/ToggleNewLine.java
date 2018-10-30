@@ -1,4 +1,4 @@
-package commands;
+/*package commands;
 
 import models.SingleArgCommand;
 import unnamed.Log;
@@ -15,4 +15,4 @@ public class ToggleNewLine extends SingleArgCommand {
         else
             log.newLineOn();
     }
-}
+}*/
