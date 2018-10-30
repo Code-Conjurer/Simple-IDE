@@ -19,11 +19,11 @@ public class testHashCodeEquals {
     @BeforeEach
     public void beforeEach(){
         writeCommand = new Write(new Log("title", new ProgramLoop()));
+        newWriteCommand = new Write(new Log("title", new ProgramLoop()));
     }
 
     @Test
     public void testEqual(){
-        newWriteCommand = new Write(new Log("title", new ProgramLoop()));
         assertTrue(writeCommand.equals(newWriteCommand));
     }
 

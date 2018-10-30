@@ -17,6 +17,7 @@ public class ProgramLoop{
         log = new Log("new log", this);
         comInter = new CommandInterpreter(log);
         inputScanner = new Scanner(System.in);
+        running = true;
     }
 
     public void run(){

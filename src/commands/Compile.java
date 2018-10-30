@@ -4,13 +4,15 @@ import models.SingleArgCommand;
 import unnamed.Log;
 
 import javax.tools.*;
+import java.io.File;
 import java.net.URI;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
-public abstract class Compile extends SingleArgCommand {
+public class Compile extends SingleArgCommand {
 
     public Compile(Log log) {
-        super(log, "compileLog");
+        super(log, "compile");
     }
 
     /*
@@ -40,7 +42,7 @@ public abstract class Compile extends SingleArgCommand {
     public void run(String input) {
 
         try {
-            setupCompilerAndRun();
+            setupCompilerAndRun(input);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e);
@@ -51,12 +53,15 @@ public abstract class Compile extends SingleArgCommand {
         return Paths.get(input).toUri();
     }
 
-    private void setupCompilerAndRun() {
+    private void setupCompilerAndRun(String fileName) {
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler(); //gets java compiler, returns null otherwise (only having the JRE will return null)
         StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
         /*local is a geographic region or language ie: CANADA,JAPAN,ITALIAN.
           the file manager is an object
          */
+
+        SourceFile source = new SourceFile(new File(fileName));
+        Iterable<? extends JavaFileObject> compilationUnits = Arrays.asList(source);
 
         JavaCompiler.CompilationTask compilationTask = compiler.getTask(
                 null,
@@ -64,8 +69,9 @@ public abstract class Compile extends SingleArgCommand {
                 null,
                 null,
                 null,
-                null);
+                compilationUnits);
         compilationTask.call();
+
 
 
     }
@@ -87,5 +93,21 @@ public abstract class Compile extends SingleArgCommand {
 
     }*/
 
+    private class SourceFile extends SimpleJavaFileObject{
+
+        private final CharSequence source;
+
+        public SourceFile(File file){
+            super(file.toURI(), Kind.SOURCE);
+        }
+
+        @Override
+        public CharSequence getCharContent(final boolean ignoreEncodingErrors)
+                throws UnsupportedOperationException {
+            if (source == null)
+                throw new UnsupportedOperationException("getCharContent()");
+            return source;
+        }
+    }
 
 }
