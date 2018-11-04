@@ -115,4 +115,10 @@ public class Log{
             System.out.println();
         }
     }
+
+    //////////////////////////////////////////////////////////
+    public List<String> getData(){
+        return lineList;
+    }
+    //////////////////////////////////////////////////////////
 }

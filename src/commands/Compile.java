@@ -5,7 +5,11 @@ import unnamed.Log;
 
 import javax.tools.*;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.net.URI;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
@@ -63,16 +67,22 @@ public class Compile extends SingleArgCommand {
         SourceFile source = new SourceFile(new File(fileName));
         Iterable<? extends JavaFileObject> compilationUnits = Arrays.asList(source);
 
+        Writer output = null;
+
+        try {
+            output = new PrintWriter("outputFile");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         JavaCompiler.CompilationTask compilationTask = compiler.getTask(
-                null,
+                output,
                 fileManager,
                 null,
                 null,
                 null,
                 compilationUnits);
         compilationTask.call();
-
-
 
     }
     /*
@@ -95,18 +105,31 @@ public class Compile extends SingleArgCommand {
 
     private class SourceFile extends SimpleJavaFileObject{
 
-        private final CharSequence source;
+        private String code;
 
         public SourceFile(File file){
             super(file.toURI(), Kind.SOURCE);
+
+            //QUICK HACK=------------------------------
+            code ="";
+            for(String s : log.getData())
+                code += s;
+
+            //=================================
+            /*try {
+                //code = Files.readAllLines(file.toPath()).toString();
+                code = "class Main{\n " +
+                        "public static void main(String[] args){\n" +
+                        "System.out.println(\"hello compiler\");\n" +
+                        "}}";
+            }catch (Exception e){
+                e.printStackTrace();
+            }*/
         }
 
         @Override
-        public CharSequence getCharContent(final boolean ignoreEncodingErrors)
-                throws UnsupportedOperationException {
-            if (source == null)
-                throw new UnsupportedOperationException("getCharContent()");
-            return source;
+        public CharSequence getCharContent(final boolean ignoreEncodingErrors) throws UnsupportedOperationException {
+            return code;
         }
     }
 
