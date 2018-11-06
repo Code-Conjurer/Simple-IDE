@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ProgramLoop{
 
     private Log log;
-    private Scanner inputScanner;
+    InputHandler inputHandler;
     private CommandInterpreter comInter;
     private Boolean running;
 
@@ -16,19 +16,19 @@ public class ProgramLoop{
         //log = new Log("new log", false);
         log = new Log("new log", this);
         comInter = new CommandInterpreter(log);
-        inputScanner = new Scanner(System.in);
+        inputHandler = new InputHandler(comInter);
         running = true;
     }
 
     public void run(){
         System.out.println("~~ " + log.getTitle()  + " ~~");
         while(running){
-            handleInput();
+            running = inputHandler.handleInput();
             log.printLog();
         }
     }
 
-    //TODO: Allow for different command formats (``~ # effects) (``~ <# # #> effects) (``~ effects) (``~ #)
+    /*
     private void handleInput(){
         String input = inputScanner.nextLine();
         if(input.toLowerCase().equals("``quit"))
@@ -42,6 +42,6 @@ public class ProgramLoop{
         }catch(CommandNotFoundException e){
             System.out.println("~~Command not Found~~");
         }
-    }
+    }*/
 
 }

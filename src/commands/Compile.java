@@ -15,8 +15,16 @@ import java.util.Arrays;
 
 public class Compile extends SingleArgCommand {
 
+    private JavaCompiler compiler;
+    private StandardJavaFileManager fileManager;
+
     public Compile(Log log) {
         super(log, "compile");
+        compiler = ToolProvider.getSystemJavaCompiler(); //gets java compiler, returns null otherwise (only having the JRE will return null)
+        fileManager = compiler.getStandardFileManager(null, null, null);
+        /*local is a geographic region or language ie: CANADA,JAPAN,ITALIAN.
+          the file manager is an object
+         */
     }
 
     /*
@@ -58,11 +66,6 @@ public class Compile extends SingleArgCommand {
     }
 
     private void setupCompilerAndRun(String fileName) {
-        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler(); //gets java compiler, returns null otherwise (only having the JRE will return null)
-        StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
-        /*local is a geographic region or language ie: CANADA,JAPAN,ITALIAN.
-          the file manager is an object
-         */
 
         SourceFile source = new SourceFile(new File(fileName));
         Iterable<? extends JavaFileObject> compilationUnits = Arrays.asList(source);
@@ -85,23 +88,6 @@ public class Compile extends SingleArgCommand {
         compilationTask.call();
 
     }
-    /*
-    private String makeJavaFileString(){
-        String stringFile = "";
-        for(int i = 0; i < super.log.getNumberOfLines(); i++){
-            stringFile += super.log.getLine(i);
-        }
-        return stringFile;
-    }*/
-
-    /*
-    private void initalizeCompiler(URI uri)throws SecurityException {
-        //compile.run(null, null, "HelloWorld.java");
-        //JavaFileObject javaFile = new SimpleJavaFileObject(uri, JavaFileObject.Kind.SOURCE){};//since SimpleJavaFileObject is protected, we need to make it a class (via lambda)
-        //ForwardingFileObject javaFileManager = new ForwardingJavaFileManager<ClassJavaFileObject>()
-
-
-    }*/
 
     private class SourceFile extends SimpleJavaFileObject{
 
@@ -115,16 +101,6 @@ public class Compile extends SingleArgCommand {
             for(String s : log.getData())
                 code += s;
 
-            //=================================
-            /*try {
-                //code = Files.readAllLines(file.toPath()).toString();
-                code = "class Main{\n " +
-                        "public static void main(String[] args){\n" +
-                        "System.out.println(\"hello compiler\");\n" +
-                        "}}";
-            }catch (Exception e){
-                e.printStackTrace();
-            }*/
         }
 
         @Override
