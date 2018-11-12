@@ -116,6 +116,10 @@ public class Log{
         }
     }
 
+    public boolean isEmpty(){
+        return lineList.isEmpty();
+    }
+
     //////////////////////////////////////////////////////////
     public List<String> getData(){
         return lineList;

@@ -100,7 +100,6 @@ public class Compile extends SingleArgCommand {
             code ="";
             for(String s : log.getData())
                 code += s;
-
         }
 
         @Override

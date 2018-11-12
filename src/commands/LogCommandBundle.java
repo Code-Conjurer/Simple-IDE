@@ -22,7 +22,8 @@ public class LogCommandBundle extends CommandBundle{
                 new Delete(log),
                 new Edit(log),
                 new Load(log),
-                new Save(log)
+                new Save(log),
+                new Scrape(log)
         };
 
         for(Command c : commands)
