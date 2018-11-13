@@ -1,11 +1,11 @@
 package unnamed;
 
-import models.Observer;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class Log{
+public class Log extends Observable{
     private String title;
     private ArrayList<String> lineList;
     //private Boolean withNewLine;
@@ -36,6 +36,7 @@ public class Log{
                 lineList.add("");
             else
                 lineList.add(line + "");
+        setNotify();///////////////////////////////////////////////////////////////////////////////////////////////
         //}
     }
 
@@ -54,6 +55,7 @@ public class Log{
                 lineList.set(lineIndex, "");
             else
                 lineList.set(lineIndex, newLine);
+            setNotify();///////////////////////////////////////////////////////////////////////////////////////////////
         //}
     }
 /*
@@ -70,6 +72,7 @@ public class Log{
     //EFFECTS : removes element from arrayList at index
     public void removeLine(int lineIndex){
         lineList.remove(lineIndex);
+        setNotify();///////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     //REQUIRES: index within bounds
@@ -125,5 +128,11 @@ public class Log{
     public List<String> getData(){
         return lineList;
     }
+
+    private void setNotify(){
+        setChanged();
+        notifyObservers();
+    }
+
     //////////////////////////////////////////////////////////
 }

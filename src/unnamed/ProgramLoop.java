@@ -1,9 +1,11 @@
 package unnamed;
 
-import models.Observer;
-import models.Subject;
 
-public class ProgramLoop extends Subject {
+import java.util.Observable;
+import java.util.Observer;
+
+
+public class ProgramLoop {
 
     private Log log;
     InputHandler inputHandler;
@@ -13,6 +15,8 @@ public class ProgramLoop extends Subject {
     public ProgramLoop() {
         //log = new Log("new log", false);
         log = new Log("new log");
+        Observer logObserver = new LogObserver();
+        log.addObserver(logObserver);
         comInter = new CommandInterpreter(log);
         inputHandler = new InputHandler(comInter);
         running = true;
@@ -22,7 +26,7 @@ public class ProgramLoop extends Subject {
         System.out.println("~~ " + log.getTitle()  + " ~~");
         while(running){
             running = inputHandler.handleInput();
-            log.printLog();
+            //log.printLog();
         }
     }
 
