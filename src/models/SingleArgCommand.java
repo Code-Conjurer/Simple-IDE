@@ -9,11 +9,11 @@ public abstract class SingleArgCommand extends LogCommand {
     }
 
     @Override
-    public void run(String... args) {
+    public void execute(String... args) {
         assert(args.length == 1);
-        run(args[0]);
+        execute(args[0]);
     }
 
-    abstract public void run(String arg);
+    abstract public void execute(String arg);
 
 }

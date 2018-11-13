@@ -3,6 +3,7 @@ package commands;
 import models.Command;
 import unnamed.Log;
 
+import java.awt.*;
 import java.util.HashMap;
 
 public class LogCommandBundle extends CommandBundle{
@@ -23,7 +24,9 @@ public class LogCommandBundle extends CommandBundle{
                 new Edit(log),
                 new Load(log),
                 new Save(log),
-                new Scrape(log)
+                new Scrape(log),
+                //new Comp(log),
+                new LoadExecute(log)
         };
 
         for(Command c : commands)

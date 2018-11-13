@@ -15,7 +15,7 @@ public class Scrape extends SingleArgCommand {
         super(log,"scrape");
     }
 
-    public void run(String url){
+    public void execute(String url){
         //"https://www.ugrad.cs.ubc.ca/~cs210/2018w1/welcomemsg.html"
         if(!log.isEmpty()){
             System.out.println("Log must be empty");

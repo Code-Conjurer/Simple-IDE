@@ -18,8 +18,8 @@ public class testHashCodeEquals {
 
     @BeforeEach
     public void beforeEach(){
-        writeCommand = new Write(new Log("title", new ProgramLoop()));
-        newWriteCommand = new Write(new Log("title", new ProgramLoop()));
+        writeCommand = new Write(new Log("title"));
+        newWriteCommand = new Write(new Log("title"));
     }
 
     @Test

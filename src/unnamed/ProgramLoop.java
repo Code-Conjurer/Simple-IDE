@@ -14,7 +14,7 @@ public class ProgramLoop{
 
     public ProgramLoop() {
         //log = new Log("new log", false);
-        log = new Log("new log", this);
+        log = new Log("new log");
         comInter = new CommandInterpreter(log);
         inputHandler = new InputHandler(comInter);
         running = true;

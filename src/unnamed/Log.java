@@ -6,11 +6,9 @@ import java.util.List;
 public class Log{
     private String title;
     private ArrayList<String> lineList;
-    private ProgramLoop programLoop;
     //private Boolean withNewLine;
 
-    public Log(String title, ProgramLoop programLoop){
-        this.programLoop = programLoop;
+    public Log(String title){
         this.title = title;
         lineList = new ArrayList<>(0);
         //withNewLine = true;

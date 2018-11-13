@@ -11,7 +11,7 @@ public class Read extends SingleArgCommand {
     }
 
     @Override
-    public void run(String input) {
+    public void execute(String input) {
 
     }
 

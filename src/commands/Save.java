@@ -15,7 +15,7 @@ public class Save extends SingleArgCommand {
     }
 
     @Override
-    public void run(String fileLoc){
+    public void execute(String fileLoc){
         try{
             writer = makeWriter(fileLoc);
         }catch(Exception e){

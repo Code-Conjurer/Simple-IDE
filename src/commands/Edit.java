@@ -11,7 +11,7 @@ public class Edit extends LineCommand {
     }
 
     @Override
-    public void run(int lineNumber, String input) {
+    public void execute(int lineNumber, String input) {
         log.changeLine(lineNumber, input);
     }
 

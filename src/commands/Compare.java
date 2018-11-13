@@ -3,7 +3,7 @@
 public class Compare implements Command{
 
     @Override
-    public void run() {
+    public void execute() {
 
     }
 

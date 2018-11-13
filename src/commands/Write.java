@@ -10,7 +10,7 @@ public class Write extends SingleArgCommand {
         super(log, "write");
     }
 
-    public void run(String input){
+    public void execute(String input){
         log.addLine(input);
     }
 

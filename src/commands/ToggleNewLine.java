@@ -9,7 +9,7 @@ public class ToggleNewLine extends SingleArgCommand {
         super(log, "togglenewline");
     }
 
-    public void run(String input){
+    public void execute(String input){
         if(log.getWithNewLine())
             log.newLineOff();
         else

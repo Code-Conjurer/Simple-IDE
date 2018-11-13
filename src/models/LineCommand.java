@@ -10,11 +10,11 @@ public abstract class LineCommand extends LogCommand {
     }
 
     @Override
-    public void run(String... args) {
+    public void execute(String... args) {
 
-        run(Integer.parseInt(args[0]), args[1]);
+        execute(Integer.parseInt(args[0]), args[1]);
     }
 
 
-    abstract public void run(int line, String arg);
+    abstract public void execute(int line, String arg);
 }

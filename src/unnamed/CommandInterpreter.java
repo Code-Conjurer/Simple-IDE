@@ -56,7 +56,7 @@ public class CommandInterpreter {
         command = findCommand(commandName);
 
         if(command instanceof SingleArgCommand)
-            command.run(input);
+            command.execute(input);
 
         if(command instanceof LineCommand){
             spaceMarker = input.indexOf(" ");
@@ -66,7 +66,7 @@ public class CommandInterpreter {
 
             String lineArg = input.substring(0, spaceMarker).trim();
             input = input.substring(spaceMarker).trim();
-            command.run(lineArg, input);
+            command.execute(lineArg, input);
         }
     }
 

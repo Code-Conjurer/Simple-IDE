@@ -12,7 +12,7 @@ public class Delete extends LineCommand {
     }
 
     @Override
-    public void run(int lineNumber, String input){
+    public void execute(int lineNumber, String input){
         log.removeLine(lineNumber);
     }
 
