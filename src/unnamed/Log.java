@@ -1,5 +1,7 @@
 package unnamed;
 
+import models.Observer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +105,7 @@ public class Log{
             return;
         System.out.print(lineIndex + ": " + lineList.get(lineIndex));
     }
+
 
     //EFFECTS : calls printLine method for each element in arrayList
     public void printLog(){

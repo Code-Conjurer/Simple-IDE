@@ -1,11 +1,9 @@
 package unnamed;
 
-import Exceptions.CommandNotFoundException;
-import commands.*;
+import models.Observer;
+import models.Subject;
 
-import java.util.Scanner;
-
-public class ProgramLoop{
+public class ProgramLoop extends Subject {
 
     private Log log;
     InputHandler inputHandler;

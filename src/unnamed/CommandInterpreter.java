@@ -42,8 +42,8 @@ public class CommandInterpreter {
         commandName =  input.substring(COMMAND_SIG_LENGTH, spaceMarker).toLowerCase();//"``someCommand 3 words" -> "someCommands"
         input = input.substring(spaceMarker);//"``someCommand 3 words" -> " 3 words"
         input = input.trim();
-        //--------------------------
 
+        //--------------------------
         /*
         //Recursively handles commands in command args
         int commandMarker = input.indexOf("``");
@@ -57,8 +57,7 @@ public class CommandInterpreter {
 
         if(command instanceof SingleArgCommand)
             command.execute(input);
-
-        if(command instanceof LineCommand){
+        else if(command instanceof LineCommand){
             spaceMarker = input.indexOf(" ");
 
             if(spaceMarker == -1)
@@ -67,6 +66,8 @@ public class CommandInterpreter {
             String lineArg = input.substring(0, spaceMarker).trim();
             input = input.substring(spaceMarker).trim();
             command.execute(lineArg, input);
+        }else{
+            command.execute(input.split(" "));
         }
     }
 

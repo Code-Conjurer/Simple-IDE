@@ -21,6 +21,8 @@ public class InputHandler {
         try {
             if (input.length() < 3 || !input.substring(0, 2).equals("``")) {
                 commandInterpreter.handleCommand("``write " + input);
+            }else if(input.substring(0, 3).equals("\\``")){
+                commandInterpreter.handleCommand("``write " + input.substring(1));
             } else
                 commandInterpreter.handleCommand(input);
         } catch (CommandNotFoundException e) {

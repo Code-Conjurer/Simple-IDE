@@ -25,8 +25,10 @@ public class LogCommandBundle extends CommandBundle{
                 new Load(log),
                 new Save(log),
                 new Scrape(log),
-                //new Comp(log),
-                new LoadExecute(log)
+                new LoadExecute(log),
+
+                //NOT LOG COMMANDS
+                new Print()
         };
 
         for(Command c : commands)
