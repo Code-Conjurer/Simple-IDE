@@ -34,6 +34,8 @@ public class CommandInterpreter {
         int spaceMarker;
         Command command = null;
 
+        if(input.equals("") || input == null)
+            return;
         //Gets command name
         spaceMarker = input.indexOf(" ");
         if(spaceMarker == -1)//no " " were found

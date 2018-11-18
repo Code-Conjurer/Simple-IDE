@@ -22,6 +22,10 @@ public class ProgramLoop {
         running = true;
     }
 
+    public void update(){
+        inputHandler.handleInput();
+    }
+
     public void run(){
         System.out.println("~~ " + log.getTitle()  + " ~~");
         while(running){
