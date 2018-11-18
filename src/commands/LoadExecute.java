@@ -2,10 +2,9 @@ package commands;
 
 import Exceptions.CommandNotFoundException;
 import models.SingleArgCommand;
-import unnamed.CommandInterpreter;
-import unnamed.Log;
+import models.CommandInterpreter;
+import models.Log;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;

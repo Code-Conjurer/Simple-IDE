@@ -1,7 +1,7 @@
 package commands;
 
 import models.LineCommand;
-import unnamed.Log;
+import models.Log;
 
 public class Edit extends LineCommand {
 

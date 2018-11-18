@@ -1,8 +1,7 @@
 package commands;
 
-import models.LogCommand;
 import models.SingleArgCommand;
-import unnamed.Log;
+import models.Log;
 
 import java.io.IOException;
 import java.io.PrintWriter;

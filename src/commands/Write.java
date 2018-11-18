@@ -1,8 +1,7 @@
 package commands;
 
-import models.LogCommand;
 import models.SingleArgCommand;
-import unnamed.Log;
+import models.Log;
 
 public class Write extends SingleArgCommand {
 

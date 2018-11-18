@@ -3,14 +3,11 @@ package ui;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import unnamed.ProgramLoop;
+import models.ProgramLoop;
 
 
 public class Initialize extends Application {
@@ -20,9 +17,9 @@ public class Initialize extends Application {
     private BorderPane borderPane;
     private VBox vBox;
     private CommandBar commandBar;
-    private EditorRegion textArea;
+    private EditRegion textArea;
 
-    private TextArea consoleDisplay;
+    private ConsoleDisplay consoleDisplay;
 
     public Initialize(){
         programLoop = new ProgramLoop();
@@ -46,10 +43,8 @@ public class Initialize extends Application {
         borderPane = new BorderPane();
         vBox = new VBox();
         commandBar = new CommandBar();
-        textArea = new EditorRegion();
-        consoleDisplay = new TextArea();
-
-        consoleDisplay.setEditable(false);
+        textArea = new EditRegion();
+        consoleDisplay = new ConsoleDisplay();
 
         borderPane.setPadding(new Insets(10));
         vBox.setPrefHeight(10);

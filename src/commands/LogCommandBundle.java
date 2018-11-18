@@ -1,9 +1,8 @@
 package commands;
 
 import models.Command;
-import unnamed.Log;
+import models.Log;
 
-import java.awt.*;
 import java.util.HashMap;
 
 public class LogCommandBundle extends CommandBundle{

@@ -1,9 +1,7 @@
 package commands;
 
-import models.Command;
-import models.LogCommand;
 import models.SingleArgCommand;
-import unnamed.Log;
+import models.Log;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;

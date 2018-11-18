@@ -1,15 +1,13 @@
 package commands;
 
 import models.SingleArgCommand;
-import unnamed.Log;
+import models.Log;
 
 import javax.tools.*;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;

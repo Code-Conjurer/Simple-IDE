@@ -5,8 +5,7 @@ import commands.Write;
 import models.Command;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import unnamed.Log;
-import unnamed.ProgramLoop;
+import models.Log;
 
 public class testCompileCommand {
 

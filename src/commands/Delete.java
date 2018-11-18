@@ -1,8 +1,7 @@
 package commands;
 
 import models.LineCommand;
-import models.LogCommand;
-import unnamed.Log;
+import models.Log;
 
 public class Delete extends LineCommand {
 

@@ -1,11 +1,8 @@
-package unnamed;
+package models;
 
 import Exceptions.CommandNotFoundException;
 import commands.CommandBundle;
 import commands.LogCommandBundle;
-import models.Command;
-import models.LineCommand;
-import models.SingleArgCommand;
 
 import java.util.ArrayList;
 import java.util.List;

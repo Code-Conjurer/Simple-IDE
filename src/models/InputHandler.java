@@ -1,4 +1,4 @@
-package unnamed;
+package models;
 
 import Exceptions.CommandNotFoundException;
 

@@ -1,7 +1,7 @@
 package commands;
 
 import models.SingleArgCommand;
-import unnamed.Log;
+import models.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;

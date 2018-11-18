@@ -1,7 +1,5 @@
 package models;
 
-import unnamed.Log;
-
 public abstract class LineCommand extends LogCommand {
 
 
