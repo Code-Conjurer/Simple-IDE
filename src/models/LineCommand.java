@@ -3,16 +3,16 @@ package models;
 public abstract class LineCommand extends LogCommand {
 
 
-    public LineCommand(Log log, String name) {
-        super(log, name);
+    public LineCommand(String name) {
+        super(name);
     }
 
     @Override
-    public void execute(String... args) {
+    public void execute(Log log, String... args) {
 
-        execute(Integer.parseInt(args[0]), args[1]);
+        execute(log, Integer.parseInt(args[0]), args[1]);
     }
 
 
-    abstract public void execute(int line, String arg);
+    abstract public void execute(Log log, int line, String arg);
 }

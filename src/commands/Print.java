@@ -1,6 +1,7 @@
 package commands;
 
 import models.Command;
+import models.Log;
 
 public class Print extends Command {
 
@@ -9,7 +10,7 @@ public class Print extends Command {
     }
 
     @Override
-    public void execute(String... args) {
+    public void execute(Log log, String... args) {
         for(String s : args){
             System.out.print(s);
         }

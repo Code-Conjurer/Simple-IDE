@@ -21,11 +21,11 @@ public class testCompileCommand {
 
     @Test
     public void testCompileFromFile(){
-        write.execute("public class Main{");
-        write.execute("public void main(String[] args){");
-        write.execute("System.out.println(\"wowza\");");
-        write.execute("}");
-        write.execute("}");
-        compile.execute("Main");
+        write.execute(, "public class Main{");
+        write.execute(, "public void main(String[] args){");
+        write.execute(, "System.out.println(\"wowza\");");
+        write.execute(, "}");
+        write.execute(, "}");
+        compile.execute(, "Main");
     }
 }

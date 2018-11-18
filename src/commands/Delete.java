@@ -6,12 +6,12 @@ import models.Log;
 public class Delete extends LineCommand {
 
 
-    public Delete(Log log) {
-        super(log, "delete");
+    public Delete() {
+        super("delete");
     }
 
     @Override
-    public void execute(int lineNumber, String input){
+    public void execute(Log log, int lineNumber, String input){
         log.removeLine(lineNumber);
     }
 

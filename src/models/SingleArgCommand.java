@@ -2,16 +2,16 @@ package models;
 
 public abstract class SingleArgCommand extends LogCommand {
 
-    public SingleArgCommand(Log log, String name) {
-        super(log, name);
+    public SingleArgCommand(String name) {
+        super(name);
     }
 
     @Override
-    public void execute(String... args) {
+    public void execute(Log log, String... args) {
         assert(args.length == 1);
-        execute(args[0]);
+        execute(log, args[0]);
     }
 
-    abstract public void execute(String arg);
+    abstract public void execute(Log log, String arg);
 
 }

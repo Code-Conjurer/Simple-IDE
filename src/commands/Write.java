@@ -5,11 +5,12 @@ import models.Log;
 
 public class Write extends SingleArgCommand {
 
-    public Write(Log log){
-        super(log, "write");
+    public Write(){
+        super("write");
     }
 
-    public void execute(String input){
+    @Override
+    public void execute(Log log, String input){
         log.addLine(input);
     }
 

@@ -7,7 +7,7 @@ public abstract class Command{
         this.name = name;
     }
 
-    abstract public void execute(String... args);
+    abstract public void execute(Log log, String... args);
 
     public String getName(){
 

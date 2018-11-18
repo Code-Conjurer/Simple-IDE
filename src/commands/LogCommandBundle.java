@@ -10,21 +10,20 @@ public class LogCommandBundle extends CommandBundle{
     private Log log;
     //HashMap<String, Command> commandLibrary;
 
-    public LogCommandBundle(Log log){
-        this.log = log;
+    public LogCommandBundle(){
 
         commandLibrary = new HashMap<>();
 
         Command[] commands = {
-                new Write(log),
-                new Compile(log),
+                new Write(),
+                new Compile(),
                 //new ToggleNewLine(log),
-                new Delete(log),
-                new Edit(log),
-                new Load(log),
-                new Save(log),
-                new Scrape(log),
-                new LoadExecute(log),
+                new Delete(),
+                new Edit(),
+                new Load(),
+                new Save(),
+                new Scrape(),
+                new LoadExecute(),
 
                 //NOT LOG COMMANDS
                 new Print()

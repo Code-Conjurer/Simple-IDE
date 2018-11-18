@@ -11,23 +11,23 @@ import java.net.URL;
 
 public class Scrape extends SingleArgCommand {
 
-    public Scrape(Log log){
-        super(log,"scrape");
+    public Scrape(){
+        super("scrape");
     }
 
-    public void execute(String url){
+    public void execute(Log log, String url){
         //"https://www.ugrad.cs.ubc.ca/~cs210/2018w1/welcomemsg.html"
         if(!log.isEmpty()){
             System.out.println("Log must be empty");
         }
         try {
-            runHelper(new URL(url));
+            runHelper(log, new URL(url));
         }catch (IOException e){
             System.out.println(e);
         }
     }
 
-    private void runHelper(URL url) throws MalformedURLException, IOException {
+    private void runHelper(Log log, URL url) throws MalformedURLException, IOException {
         BufferedReader br = null;
         try {
             br = new BufferedReader(new InputStreamReader(url.openStream()));

@@ -2,7 +2,7 @@ package commands;
 
 import models.LineCommand;
 import models.Log;
-
+/*
 public class Search extends LineCommand {
 
     public Search(Log log){
@@ -15,3 +15,4 @@ public class Search extends LineCommand {
     }
 
 }
+*/

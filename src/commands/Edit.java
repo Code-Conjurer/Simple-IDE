@@ -6,12 +6,12 @@ import models.Log;
 public class Edit extends LineCommand {
 
 
-    public Edit(Log log){
-        super(log, "edit");
+    public Edit(){
+        super("edit");
     }
 
     @Override
-    public void execute(int lineNumber, String input) {
+    public void execute(Log log, int lineNumber, String input) {
         log.changeLine(lineNumber, input);
     }
 

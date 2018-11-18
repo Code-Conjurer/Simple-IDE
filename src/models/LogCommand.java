@@ -2,11 +2,8 @@ package models;
 
 public abstract class LogCommand extends Command {
 
-    protected Log log;
-
-    public LogCommand(Log log, String name){
+    public LogCommand(String name){
         super(name);
-        this.log = log;
     }
 
 }

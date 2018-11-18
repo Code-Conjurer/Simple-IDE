@@ -18,8 +18,8 @@ public class Compile extends SingleArgCommand {
     private JavaCompiler compiler;
     private SimpleJavaFileManager fileManager;
 
-    public Compile(Log log) {
-        super(log, "compile");
+    public Compile() {
+        super("compile");
         compiler = ToolProvider.getSystemJavaCompiler(); //gets java compiler, returns null otherwise (only having the JRE will return null)
         fileManager = new SimpleJavaFileManager(compiler.getStandardFileManager(null, null, null));
     }
@@ -48,10 +48,11 @@ public class Compile extends SingleArgCommand {
         }
 
     }*/
-    public void execute(String input) {
+    @Override
+    public void execute(Log log, String input) {
 
         try {
-            setupCompilerAndRun(input);
+            setupCompilerAndRun(log, input);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e);
@@ -63,9 +64,9 @@ public class Compile extends SingleArgCommand {
         return Paths.get(input).toUri();
     }*/
 
-    private void setupCompilerAndRun(String fileName) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    private void setupCompilerAndRun(Log log, String fileName) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
-        JavaFileObject source = new SourceFile(fileName);
+        JavaFileObject source = new SourceFile(log, fileName);
         Iterable<? extends JavaFileObject> compilationUnits = Arrays.asList(source);
 
         /*riter output = null;
@@ -98,7 +99,7 @@ public class Compile extends SingleArgCommand {
 
         private String code;
 
-        public SourceFile(String fileName){
+        public SourceFile(Log log, String fileName){
             super(URI.create("string://" + "/" + fileName), Kind.SOURCE);// "string://" creates the scheme for the uri
 
             //QUICK HACK=------------------------------

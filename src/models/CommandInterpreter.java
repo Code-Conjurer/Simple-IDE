@@ -20,13 +20,13 @@ public class CommandInterpreter {
         this.commandBundles = Arrays.asList(commandBundles);
     }*/
 
-    public CommandInterpreter(Log log){
+    public CommandInterpreter(){
         this.commandBundles = new ArrayList<>();
-        commandBundles.add(new LogCommandBundle(log));
+        commandBundles.add(new LogCommandBundle());
 
     }
 
-    public void handleCommand(String input) throws CommandNotFoundException {
+    public void handleCommand(Log log, String input) throws CommandNotFoundException {
         String commandName;
         int spaceMarker;
         Command command = null;
@@ -55,7 +55,7 @@ public class CommandInterpreter {
         command = findCommand(commandName);
 
         if(command instanceof SingleArgCommand)
-            command.execute(input);
+            command.execute(log, input);
         else if(command instanceof LineCommand){
             spaceMarker = input.indexOf(" ");
 
@@ -64,9 +64,9 @@ public class CommandInterpreter {
 
             String lineArg = input.substring(0, spaceMarker).trim();
             input = input.substring(spaceMarker).trim();
-            command.execute(lineArg, input);
+            command.execute(log, lineArg, input);
         }else{
-            command.execute(input.split(" "));
+            command.execute(log, input.split(" "));
         }
     }
 

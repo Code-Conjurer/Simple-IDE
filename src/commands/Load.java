@@ -8,13 +8,13 @@ import java.nio.file.Paths;
 
 public class Load extends SingleArgCommand{
 
-    public Load(Log log){
-        super(log, "load");
+    public Load(){
+        super("load");
     }
 
     //TODO: make execute change the title of log
     @Override
-    public void execute(String fileLoc){
+    public void execute(Log log, String fileLoc){
         try{
             log.LoadData(Files.readAllLines(Paths.get(fileLoc)));
         }catch(Exception e){

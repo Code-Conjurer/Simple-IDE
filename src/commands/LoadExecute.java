@@ -13,14 +13,15 @@ import java.util.List;
 
 public class LoadExecute extends SingleArgCommand {
 
-    public LoadExecute(Log log){
-        super(log, "loadexecute");
+    public LoadExecute(){
+        super("loadexecute");
     }
 
     //TODO: make execute change the title of log
+    //TODO: remove new CommandInterpreter
     @Override
-    public void execute(String fileLoc){
-        CommandInterpreter commandInterpreter = new CommandInterpreter(super.log);
+    public void execute(Log log, String fileLoc){
+        CommandInterpreter commandInterpreter = new CommandInterpreter();
 
         List<String> lines = new ArrayList<>();
         try{
@@ -32,7 +33,7 @@ public class LoadExecute extends SingleArgCommand {
             Iterator<String> iter = lines.iterator();
         try {
             while (iter.hasNext()) {
-                commandInterpreter.handleCommand(iter.next());
+                commandInterpreter.handleCommand(log, iter.next());
             }
         }catch (CommandNotFoundException e){
             e.printStackTrace();

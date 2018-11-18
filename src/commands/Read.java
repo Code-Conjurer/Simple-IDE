@@ -2,7 +2,7 @@ package commands;
 
 import models.SingleArgCommand;
 import models.Log;
-
+/*
 public class Read extends SingleArgCommand {
 
     public Read(Log log) {
@@ -15,3 +15,4 @@ public class Read extends SingleArgCommand {
     }
 
 }
+*/
