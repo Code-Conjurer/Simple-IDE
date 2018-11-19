@@ -5,7 +5,6 @@ import models.Log;
 
 import javax.tools.*;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URI;
@@ -14,82 +13,109 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class Compile extends SingleArgCommand {
+public class CompileOld extends SingleArgCommand {
 
     private JavaCompiler compiler;
     private SimpleJavaFileManager fileManager;
-    private String program;
-    private String mainClassName = "Main";
-    private String mainMethodName = "main";
 
-    private enum SyntaxTokens{
-
-    }
-
-    public Compile() {
+    public CompileOld() {
         super("compile");
         compiler = ToolProvider.getSystemJavaCompiler(); //gets java compiler, returns null otherwise (only having the JRE will return null)
         fileManager = new SimpleJavaFileManager(compiler.getStandardFileManager(null, null, null));
     }
 
-    //TODO: implement pattern matching for class and method (make entire program sing string then check class/methods)
-    @Override
-    public void execute(Log log, String input) {
-        List<String> logData = log.getData();
-        program = "";
-        mainClassName = input;
-        for(String s : logData){
-            //if(s.contains(" class ")){
-                //mainClassName = s.substring(s.indexOf("class")).split(" ")[1];//awful
-              //  mainClassName = s.substring(s.lastIndexOf(" "), s.indexOf("{")).trim();
-                //System.out.println("class name: " + mainClassName);
-            //}/*else if(s.substring(s.length()-2, s.length()-1).equals("){") ){//TODO: improve this, only works for main(){ ect
+    /*
+        public void execute (String input){
+                /////////////////////////////////////////////TODO:allow blank input for unsaved log
+            try {
+                Process p = Runtime.getRuntime().exec("cmd.exe /c start dir");
 
-            program += s +"\n";
+                    //String[] cmdCommands = {"cmd.exe","/c","start","cd C:\\Users\\matt\\Desktop\\Git Repos",
+                    //"set path=%path%;C:\\Program Files\\Java\\jdk1.8.0_181\\bin"};
+                    //Process p = Runtime.getRuntime().exec(cmdCommands);
+
+                    //Runtime r = Runtime.getRuntime();
+                    //r.exec("cmd.exe /c start dir");
+                    //r.exec("cd src\\ui");
+
+                /*
+                pr = new PrintWriter(new OutputStreamWriter(p.getOutputStream()));
+                pr.write("cd src\\ui");
+                pr.write("javac Initialize.java");
+                pr.close();*//*
+        } catch (Exception e) {
+            System.out.println(e);
         }
 
-        System.out.println(program);
+    }*/
+    @Override
+    public void execute(Log log, String input) {
+
         try {
-            setupCompilerAndRun(mainClassName);
+            setupCompilerAndRun(log, input);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e);
         }
     }
 
-    private void setupCompilerAndRun(String name) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    /*
+    private URI findFileURI(String input) {
+        return Paths.get(input).toUri();
+    }*/
 
-        JavaFileObject compilationUnit =
-                new StringJavaFileObject(name, program);
+    private void setupCompilerAndRun(Log log, String fileName) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+
+        JavaFileObject source = new SourceFile(log, fileName);
+        Iterable<? extends JavaFileObject> compilationUnits = Arrays.asList(source);
+
+        /*riter output = null;
+
+        try {
+            output = new PrintWriter("outputFile");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }*/
 
         JavaCompiler.CompilationTask compilationTask = compiler.getTask(
-                null, fileManager, null, null, null, Arrays.asList(compilationUnit));
+                null,
+                fileManager,
+                null,
+                null,
+                null,
+                compilationUnits);
 
         compilationTask.call();
+        CompiledClassLoader classLoader = new CompiledClassLoader(fileManager.getGeneratedOutputFiles());
 
-        CompiledClassLoader classLoader =
-                new CompiledClassLoader(fileManager.getGeneratedOutputFiles());
-
-        Class<?> mainClass = classLoader.loadClass(mainClassName);
-        Method main = mainClass.getMethod(mainMethodName, String[].class);
-        main.invoke(null, new Object[]{null});
+        //run -------------HACKY
+        //The class name is hard coded as Main, Method is hard coded as main
+        Class<?> mainClass = classLoader.findClass("Main"); //throws ClassNotFound
+        Method mainMethod = mainClass.getMethod("main", String[].class); //throws NoSuchMethod
+        mainMethod.invoke(null, new Object[]{null});
     }
 
-    private static class StringJavaFileObject extends SimpleJavaFileObject {
-        private final String code;
+    private class SourceFile extends SimpleJavaFileObject{
 
-        public StringJavaFileObject(String name, String code) {
-            super(URI.create("string:///" + name.replace('.', '/') + Kind.SOURCE.extension),
-                    Kind.SOURCE);
-            this.code = code;
+        private String code;
+
+        public SourceFile(Log log, String fileName){
+            super(URI.create("string://" + "/" + fileName), Kind.SOURCE);// "string://" creates the scheme for the uri
+
+            //QUICK HACK=------------------------------
+            code ="";
+            for(String s : log.getData())
+                code += s + "\n";
         }
 
         @Override
-        public CharSequence getCharContent(boolean ignoreEncodingErrors) throws IOException {
+        public CharSequence getCharContent(final boolean ignoreEncodingErrors) throws UnsupportedOperationException {
             return code;
         }
     }
 
+    //Code Below was inspired by https://gist.github.com/chrisvest/9873843
+    //---------------------------------------------------------------------
     private static class ClassJavaFileObject extends SimpleJavaFileObject {
         private final ByteArrayOutputStream outputStream;
         private final String className;
@@ -119,7 +145,7 @@ public class Compile extends SingleArgCommand {
 
         protected SimpleJavaFileManager(JavaFileManager fileManager) {
             super(fileManager);
-            outputFiles = new ArrayList<ClassJavaFileObject>();
+            outputFiles = new ArrayList<>();
         }
 
         @Override

@@ -26,15 +26,16 @@ public class LogEngine{
 
     public void update(String newData){
         ArrayList<String> newList = new ArrayList<>();
-        if(newData == null || newData.equals(""))
+
+        if(newData == null || newData.equals("")) {
             log.loadData(newList);
-        else {
+        }else{
             String[] temp = newData.split("\\n");
             for(String s : temp){
                 newList.add(s);
             }
 
-            log.loadData(newList);
+            log.loadDataWithoutNotify(newList);
         }
     }
 

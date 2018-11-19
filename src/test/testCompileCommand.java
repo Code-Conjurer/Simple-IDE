@@ -1,11 +1,5 @@
 package test;
 
-import commands.Compile;
-import commands.Write;
-import models.Command;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import models.Log;
 /*
 public class testCompileCommand {
 

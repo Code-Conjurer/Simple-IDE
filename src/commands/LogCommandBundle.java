@@ -1,8 +1,6 @@
 package commands;
 
 import models.Command;
-import models.Log;
-import ui.ConsoleDisplay;
 
 import java.util.HashMap;
 

@@ -23,8 +23,9 @@ public class EditRegion extends TextArea {
 
         textProperty().addListener(new ChangeListener() {
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                if(isAppending)
-                    logEngine.update( (String) newValue);
+                if(isAppending) {
+                    logEngine.update((String) newValue);
+                }
             }
         });
     }

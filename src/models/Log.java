@@ -37,6 +37,14 @@ public class Log extends Observable{
         console.println();
         //}
     }
+    public void addLineWithoutNotify(String line){
+            if (line == null)
+                data.add("");
+            else
+                data.add(line + "");
+        console.println();
+        //}
+    }
 
     //TODO: add try catch / if statements to keep lineIndex within bounds of log
     //REQUIRES: index within bounds of arrayList
@@ -138,6 +146,9 @@ public class Log extends Observable{
     public void loadData(List<String> data){
         this.data = (ArrayList)data;
         setNotify();
+    }
+    public void loadDataWithoutNotify(List<String> data){
+        this.data = (ArrayList)data;
     }
 
     //////////////////////////////////////////////////////////
