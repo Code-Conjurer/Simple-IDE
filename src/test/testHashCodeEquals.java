@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import models.Log;
 
 import java.util.HashMap;
-
+/*
 public class testHashCodeEquals {
 
     Command writeCommand;
@@ -36,3 +36,4 @@ public class testHashCodeEquals {
 
 
 }
+*/

@@ -7,6 +7,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.Log;
+import models.LogEngine;
 import models.ProgramLoop;
 
 
@@ -18,6 +20,7 @@ public class Initialize extends Application {
     private VBox vBox;
     private CommandBar commandBar;
     private EditRegion textArea;
+    private LogEngine logEngine;
 
     private ConsoleDisplay consoleDisplay;
 
@@ -37,14 +40,23 @@ public class Initialize extends Application {
                 System.out.println("Hello World!");
             }
         });*/
+        consoleDisplay = new ConsoleDisplay();
+        logEngine = new LogEngine(consoleDisplay);
 
+        textArea = new EditRegion(logEngine);
+        commandBar = new CommandBar(logEngine);
+
+
+
+        setupScreen();
+        primaryStage.setScene(new Scene(root, 700, 500));
+        primaryStage.show();
+    }
+
+    private void setupScreen(){
         root = new StackPane();
-        //GridPane gp = new GridPane();
         borderPane = new BorderPane();
         vBox = new VBox();
-        commandBar = new CommandBar();
-        textArea = new EditRegion();
-        consoleDisplay = new ConsoleDisplay();
 
         borderPane.setPadding(new Insets(10));
         vBox.setPrefHeight(10);
@@ -57,10 +69,6 @@ public class Initialize extends Application {
 
         //borderPane.setBottom();
         root.getChildren().add(borderPane);
-
-        //root.getChildren().add(btn);
-        primaryStage.setScene(new Scene(root, 700, 500));
-        primaryStage.show();
     }
 
     public static void main(String[] args){

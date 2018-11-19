@@ -1,6 +1,9 @@
 package models;
 
 
+import Exceptions.CommandNotFoundException;
+import ui.ConsoleDisplay;
+
 import java.util.Observer;
 
 
@@ -13,22 +16,22 @@ public class ProgramLoop {
 
     public ProgramLoop() {
         //log = new Log("new log", false);
-        log = new Log("new log");
+        log = new Log(new ConsoleDisplay(), "new log");
         Observer logObserver = new LogObserver();
         log.addObserver(logObserver);
-        comInter = new CommandInterpreter(log);
+        comInter = new CommandInterpreter();
         inputHandler = new InputHandler(comInter);
         running = true;
     }
 
     public void update(){
-        inputHandler.handleInput();
+        inputHandler.handleInput(log);
     }
 
     public void run(){
         System.out.println("~~ " + log.getTitle()  + " ~~");
         while(running){
-            running = inputHandler.handleInput();
+            running = inputHandler.handleInput(log);
             //log.printLog();
         }
     }
@@ -41,7 +44,7 @@ public class ProgramLoop {
 
         try {
             if(input.length() < 3 || !input.substring(0, 2).equals("``")) {
-                comInter.handleCommand("``write " + input);
+                comInter.handleCommand(log,"``write " + input);
             }else
                 comInter.handleCommand(input);
         }catch(CommandNotFoundException e){

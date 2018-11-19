@@ -14,17 +14,17 @@ public class InputHandler {
         inputScanner = new Scanner(System.in);
     }
 
-    public boolean handleInput() {
+    public boolean handleInput(Log log) {
         String input = inputScanner.nextLine();
         if (input.toLowerCase().equals("``quit"))
             return false;
         try {
             if (input.length() < 3 || !input.substring(0, 2).equals("``")) {
-                commandInterpreter.handleCommand("``write " + input);
+                commandInterpreter.handleCommand(log,"``write " + input);
             }else if(input.substring(0, 3).equals("\\``")){
-                commandInterpreter.handleCommand("``write " + input.substring(1));
+                commandInterpreter.handleCommand(log,"``write " + input.substring(1));
             } else
-                commandInterpreter.handleCommand(input);
+                commandInterpreter.handleCommand(log, input);
         } catch (CommandNotFoundException e) {
             System.out.println("~~Command not Found~~");
         }

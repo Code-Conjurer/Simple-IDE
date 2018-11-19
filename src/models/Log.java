@@ -1,25 +1,28 @@
 package models;
 
+import ui.ConsoleDisplay;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
-import java.util.Observer;
 
 public class Log extends Observable{
     private String title;
-    private ArrayList<String> lineList;
+    private List<String> data;
+    private ConsoleDisplay console;
     //private Boolean withNewLine;
 
-    public Log(String title){
+    public Log(ConsoleDisplay console, String title){
         this.title = title;
-        lineList = new ArrayList<>(0);
+        this.console = console;
+        data = new ArrayList<>(0);
         //withNewLine = true;
     }
 
     /*
     public Log(String title, Boolean withNewLine){
         this.title = title;
-        lineList = new ArrayList<>(0);
+        data = new ArrayList<>(0);
         this.withNewLine = withNewLine;
     }*/
 
@@ -28,14 +31,14 @@ public class Log extends Observable{
     public void addLine(String line){
         /*if(withNewLine) {
             if (line == null)
-                lineList.add("\\n");
+                data.add("\\n");
             else
-                lineList.add(line + "\\n");
+                data.add(line + "\\n");
         }else{*/
             if (line == null)
-                lineList.add("");
+                data.add("");
             else
-                lineList.add(line + "");
+                data.add(line + "");
         setNotify();///////////////////////////////////////////////////////////////////////////////////////////////
         //}
     }
@@ -47,14 +50,14 @@ public class Log extends Observable{
     public void changeLine(int lineIndex, String newLine){
         /*if(withNewLine) {
             if (newLine == null)
-                lineList.set(lineIndex, "\\n");
+                data.set(lineIndex, "\\n");
             else
-                lineList.set(lineIndex, newLine + "\\n");
+                data.set(lineIndex, newLine + "\\n");
         }else{*/
             if (newLine == null)
-                lineList.set(lineIndex, "");
+                data.set(lineIndex, "");
             else
-                lineList.set(lineIndex, newLine);
+                data.set(lineIndex, newLine);
             setNotify();///////////////////////////////////////////////////////////////////////////////////////////////
         //}
     }
@@ -71,14 +74,14 @@ public class Log extends Observable{
     //MODIFIES: this
     //EFFECTS : removes element from arrayList at index
     public void removeLine(int lineIndex){
-        lineList.remove(lineIndex);
+        data.remove(lineIndex);
         setNotify();///////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     //REQUIRES: index within bounds
     //EFFECTS : returns element of arrayList at index
     public String getLine(int lineIndex){
-        return lineList.get(lineIndex);
+        return data.get(lineIndex);
     }
 
     /*
@@ -87,12 +90,12 @@ public class Log extends Observable{
     }*/
 
     public void LoadData(List<String> data){
-        lineList = (ArrayList)data;
+        this.data = (ArrayList)data;
     }
 
     //EFFECTS : returns arrayList size
     public int getNumberOfLines(){
-        return lineList.size();
+        return data.size();
     }
 
     //EFFECTS : returns title variable
@@ -104,34 +107,40 @@ public class Log extends Observable{
     //REQUIRES: index within bounds of arrayList
     //EFFECTS : prints string element from array list at index as well as the index
     public void printLine(int lineIndex){
-        if(lineList.isEmpty())
+        if(data.isEmpty())
             return;
-        System.out.print(lineIndex + ": " + lineList.get(lineIndex));
+        console.print(lineIndex + ": " + data.get(lineIndex));
+        // System.out.print(lineIndex + ": " + data.get(lineIndex));
     }
 
 
     //EFFECTS : calls printLine method for each element in arrayList
     public void printLog(){
-        if(lineList.isEmpty())
+        if(data.isEmpty())
             return;
-        for(int i = 0; i < lineList.size(); i++){
+        for(int i = 0; i < data.size(); i++){
             printLine(i);
-            System.out.println();
+            console.println();
+            //System.out.println();
         }
     }
 
     public boolean isEmpty(){
-        return lineList.isEmpty();
+        return data.isEmpty();
     }
 
     //////////////////////////////////////////////////////////
     public List<String> getData(){
-        return lineList;
+        return data;
     }
 
     private void setNotify(){
         setChanged();
         notifyObservers();
+    }
+
+    public void loadData(List<String> newData){
+        data = newData;
     }
 
     //////////////////////////////////////////////////////////
