@@ -3,7 +3,9 @@ package models;
 import Exceptions.CommandNotFoundException;
 import commands.CommandBundle;
 import commands.LogCommandBundle;
+import ui.ConsoleDisplay;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

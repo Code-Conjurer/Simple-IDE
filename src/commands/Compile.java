@@ -2,6 +2,7 @@ package commands;
 
 import models.SingleArgCommand;
 import models.Log;
+import ui.ConsoleDisplay;
 
 import javax.tools.*;
 import java.io.*;
@@ -9,10 +10,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class Compile extends SingleArgCommand {
 
@@ -47,8 +45,6 @@ public class Compile extends SingleArgCommand {
 
             program += s +"\n";
         }
-
-        System.out.println(program);
         try {
             setupCompilerAndRun(mainClassName);
         } catch (Exception e) {

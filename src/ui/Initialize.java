@@ -8,7 +8,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.LogEngine;
 
-
 public class Initialize extends Application {
 
     private StackPane root;

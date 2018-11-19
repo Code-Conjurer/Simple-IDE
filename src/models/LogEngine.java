@@ -10,13 +10,14 @@ import java.util.Observer;
 
 public class LogEngine{
 
-    private final CommandInterpreter commandInterpreter = new CommandInterpreter();
+    private CommandInterpreter commandInterpreter;
     private Log log;
     private ConsoleDisplay console;
 
     public LogEngine(ConsoleDisplay console){
         this.console = console;
         log = new Log(console, "log title");
+        commandInterpreter = new CommandInterpreter();
 
     }
 

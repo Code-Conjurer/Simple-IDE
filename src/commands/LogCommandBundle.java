@@ -1,6 +1,7 @@
 package commands;
 
 import models.Command;
+import ui.ConsoleDisplay;
 
 import java.util.HashMap;
 
