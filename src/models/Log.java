@@ -84,10 +84,6 @@ public class Log extends Observable{
         return withNewLine;
     }*/
 
-    public void LoadData(List<String> data){
-        this.data = (ArrayList)data;
-    }
-
     //EFFECTS : returns arrayList size
     public int getNumberOfLines(){
         return data.size();
@@ -136,6 +132,12 @@ public class Log extends Observable{
 
     public void loadData(ArrayList<String> newData){
         data = newData;
+        setNotify();
+    }
+
+    public void loadData(List<String> data){
+        this.data = (ArrayList)data;
+        setNotify();
     }
 
     //////////////////////////////////////////////////////////

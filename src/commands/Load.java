@@ -16,7 +16,7 @@ public class Load extends SingleArgCommand{
     @Override
     public void execute(Log log, String fileLoc){
         try{
-            log.LoadData(Files.readAllLines(Paths.get(fileLoc)));
+            log.loadData(Files.readAllLines(Paths.get(fileLoc)));
         }catch(Exception e){
             System.out.println(e);
             return;
