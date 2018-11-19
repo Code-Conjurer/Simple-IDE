@@ -2,7 +2,7 @@ package models;
 
 import java.util.Observable;
 import java.util.Observer;
-
+/*
 public class LogObserver implements Observer {
     private Log log;
 
@@ -12,3 +12,4 @@ public class LogObserver implements Observer {
         log.printLog();
     }
 }
+*/

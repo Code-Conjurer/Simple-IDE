@@ -8,7 +8,7 @@ import java.util.Observable;
 
 public class Log extends Observable{
     private String title;
-    private List<String> data;
+    private ArrayList<String> data;
     private ConsoleDisplay console;
     //private Boolean withNewLine;
 
@@ -29,17 +29,12 @@ public class Log extends Observable{
     //MODIFIES: this
     //EFFECTS : Adds input to log. adds a new line character to the end if
     public void addLine(String line){
-        /*if(withNewLine) {
-            if (line == null)
-                data.add("\\n");
-            else
-                data.add(line + "\\n");
-        }else{*/
             if (line == null)
                 data.add("");
             else
                 data.add(line + "");
-        setNotify();///////////////////////////////////////////////////////////////////////////////////////////////
+        setNotify();
+        console.println();
         //}
     }
 
@@ -136,10 +131,10 @@ public class Log extends Observable{
 
     private void setNotify(){
         setChanged();
-        notifyObservers();
+        notifyObservers(data);
     }
 
-    public void loadData(List<String> newData){
+    public void loadData(ArrayList<String> newData){
         data = newData;
     }
 

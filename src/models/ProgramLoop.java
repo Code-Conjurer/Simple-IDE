@@ -5,7 +5,7 @@ import Exceptions.CommandNotFoundException;
 import ui.ConsoleDisplay;
 
 import java.util.Observer;
-
+/*
 
 public class ProgramLoop {
 
@@ -17,8 +17,8 @@ public class ProgramLoop {
     public ProgramLoop() {
         //log = new Log("new log", false);
         log = new Log(new ConsoleDisplay(), "new log");
-        Observer logObserver = new LogObserver();
-        log.addObserver(logObserver);
+        //Observer logObserver = new LogObserver();
+        //log.addObserver(logObserver);
         comInter = new CommandInterpreter();
         inputHandler = new InputHandler(comInter);
         running = true;
@@ -50,6 +50,6 @@ public class ProgramLoop {
         }catch(CommandNotFoundException e){
             System.out.println("~~Command not Found~~");
         }
-    }*/
+    }
 
-}
+}*/

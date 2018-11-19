@@ -2,16 +2,17 @@ package commands;
 
 import models.Command;
 import models.Log;
+import ui.ConsoleDisplay;
 
 import java.util.HashMap;
 
 public class LogCommandBundle extends CommandBundle{
 
-    private Log log;
     //HashMap<String, Command> commandLibrary;
+    //ConsoleDisplay console;
 
     public LogCommandBundle(){
-
+        //this.console = console;
         commandLibrary = new HashMap<>();
 
         Command[] commands = {

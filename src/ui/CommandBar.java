@@ -21,7 +21,6 @@ public class CommandBar extends TextField {
                 if(event.getCode() == KeyCode.ENTER){
                     logEngine.pushCommand(getText());
                     clear();
-                    ///////////////////////////////////////////////////do more stuff
                 }
             }
         });
