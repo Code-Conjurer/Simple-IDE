@@ -112,6 +112,10 @@ public class Log extends Observable{
         // System.out.print(lineIndex + ": " + data.get(lineIndex));
     }
 
+    //TODO: implement printing class to increase cohesion
+    public void print(List<String> list){
+
+    }
 
     //EFFECTS : calls printLine method for each element in arrayList
     public void printLog(){

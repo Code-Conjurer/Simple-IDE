@@ -22,7 +22,8 @@ public class LoadExecute extends SingleArgCommand {
     @Override
     public void execute(Log log, String fileLoc){
         CommandInterpreter commandInterpreter = new CommandInterpreter();
-
+        boolean writeBlock = false;
+        String next = "";
         List<String> lines = new ArrayList<>();
         try{
             lines = Files.readAllLines(Paths.get(fileLoc));
@@ -33,7 +34,19 @@ public class LoadExecute extends SingleArgCommand {
             Iterator<String> iter = lines.iterator();
         try {
             while (iter.hasNext()) {
-                commandInterpreter.handleCommand(log, iter.next());
+                next = iter.next();
+                if(next.equals("``write{")) {
+                    writeBlock = true;
+                    continue;
+                }
+                else if(next.equals("``}")) {
+                    writeBlock = false;
+                    continue;
+                }
+                if(writeBlock)
+                    commandInterpreter.handleCommand(log, "``write " + next);
+                else
+                    commandInterpreter.handleCommand(log, next);
             }
         }catch (CommandNotFoundException e){
             e.printStackTrace();
