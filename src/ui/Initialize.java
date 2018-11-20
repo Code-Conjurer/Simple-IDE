@@ -19,7 +19,6 @@ public class Initialize extends Application {
 
     private final int SCREEN_WIDTH = 700;
     private final int SCREEN_HEIGHT = 500;
-    private final Background BACKGROUND = new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY));
     private final String STYLE =
                     "-fx-control-inner-background:#000000; " +
                     "-fx-font-family: Consolas; " +
@@ -27,10 +26,6 @@ public class Initialize extends Application {
                     "-fx-highlight-text-fill: #000000; " +
                     "-fx-text-fill: #00ff00; " +
                     "-fx-border-color: #00ff00;" ;
-                    //"-fx-border-insets: 5;" +
-                    //"-fx-border-width: 3;" +
-                    //"-fx-border-style: dashed;";
-
 
     private ConsoleDisplay consoleDisplay;
 
