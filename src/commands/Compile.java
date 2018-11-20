@@ -1,12 +1,11 @@
 package commands;
 
+import ui.ConsolePrinter;
 import models.SingleArgCommand;
 import models.Log;
-import ui.ConsoleDisplay;
 
 import javax.tools.*;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URI;
@@ -19,13 +18,12 @@ public class Compile extends SingleArgCommand {
     private String program;
     private String mainClassName = "Main";
     private String mainMethodName = "main";
-
-    private enum SyntaxTokens{
-
-    }
+    private Writer writer;
+    //private OutputStream outputStream;
 
     public Compile() {
         super("compile");
+        //writer = new ConsolePrinter();
         compiler = ToolProvider.getSystemJavaCompiler(); //gets java compiler, returns null otherwise (only having the JRE will return null)
         fileManager = new SimpleJavaFileManager(compiler.getStandardFileManager(null, null, null));
     }
@@ -36,6 +34,8 @@ public class Compile extends SingleArgCommand {
         List<String> logData = log.getData();
         program = "";
         mainClassName = input;
+
+        log.clearConsole();
         for(String s : logData){
             //if(s.contains(" class ")){
                 //mainClassName = s.substring(s.indexOf("class")).split(" ")[1];//awful
@@ -53,11 +53,17 @@ public class Compile extends SingleArgCommand {
         }
     }
 
+    private void printToConsole(Writer writer){
+
+    }
+
     private void setupCompilerAndRun(String name) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
         JavaFileObject compilationUnit =
                 new StringJavaFileObject(name, program);
 
+        /*JavaCompiler.CompilationTask compilationTask = compiler.getTask(
+                writer, fileManager, null, null, null, Arrays.asList(compilationUnit));*/
         JavaCompiler.CompilationTask compilationTask = compiler.getTask(
                 null, fileManager, null, null, null, Arrays.asList(compilationUnit));
 

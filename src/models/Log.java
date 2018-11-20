@@ -113,8 +113,8 @@ public class Log extends Observable{
     }
 
     //TODO: implement printing class to increase cohesion
-    public void print(List<String> list){
-
+    public void clearConsole(){
+        console.clear();
     }
 
     //EFFECTS : calls printLine method for each element in arrayList

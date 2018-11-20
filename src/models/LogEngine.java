@@ -3,10 +3,7 @@ package models;
 import Exceptions.CommandNotFoundException;
 import ui.ConsoleDisplay;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Observer;
+import java.util.*;
 
 public class LogEngine{
 

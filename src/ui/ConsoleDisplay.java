@@ -3,6 +3,7 @@ package ui;
 import javafx.scene.control.TextArea;
 import models.LogEngine;
 
+import java.io.PrintStream;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -13,6 +14,10 @@ public class ConsoleDisplay extends TextArea{
         setEditable(false);
         setFocusTraversable(false);
         //setMouseTransparent(true);
+        PrintStream ps = new PrintStream(new ConsolePrinter(this), true);
+        System.setOut(ps);
+        System.setErr(ps);
+
     }
 
     public void refresh(String text){

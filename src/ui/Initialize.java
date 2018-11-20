@@ -19,6 +19,18 @@ public class Initialize extends Application {
 
     private final int SCREEN_WIDTH = 700;
     private final int SCREEN_HEIGHT = 500;
+    private final Background BACKGROUND = new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY));
+    private final String STYLE =
+                    "-fx-control-inner-background:#000000; " +
+                    "-fx-font-family: Consolas; " +
+                    "-fx-highlight-fill: #00ff00; " +
+                    "-fx-highlight-text-fill: #000000; " +
+                    "-fx-text-fill: #00ff00; " +
+                    "-fx-border-color: #00ff00;" ;
+                    //"-fx-border-insets: 5;" +
+                    //"-fx-border-width: 3;" +
+                    //"-fx-border-style: dashed;";
+
 
     private ConsoleDisplay consoleDisplay;
 
@@ -40,6 +52,10 @@ public class Initialize extends Application {
         textArea = new EditRegion(logEngine);
         commandBar = new CommandBar(logEngine);
 
+        consoleDisplay.setStyle(STYLE);
+        textArea.setStyle(STYLE);
+        commandBar.setStyle(STYLE);
+
         setupScreen();
         primaryStage.setScene(new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT));
         primaryStage.setMaxWidth(SCREEN_WIDTH);
@@ -57,7 +73,12 @@ public class Initialize extends Application {
 
         textArea.setWrapText(true);
         textArea.setMinWidth(SCREEN_WIDTH);
+        commandBar.setMinWidth(SCREEN_WIDTH);
         consoleDisplay.setMinWidth(SCREEN_WIDTH);
+
+        textArea.setMinHeight(SCREEN_HEIGHT - 250);
+        //commandBar.setMinHeight(SCREEN_WIDTH);
+        consoleDisplay.setMinHeight(SCREEN_HEIGHT - 350);
         //borderPane.setPadding(new Insets(10));
         //vBox.setPrefHeight(10);
 
@@ -66,8 +87,12 @@ public class Initialize extends Application {
 
         borderPane.setCenter(vBox);
         borderPane.setBottom(consoleDisplay);
-        Insets borderPaneGap = new Insets(0, 0,0 ,0);
-        borderPane.setMargin(consoleDisplay, borderPaneGap);
+        borderPane.setStyle("-fx-background-color: grey;");
+        //borderPane.set
+
+        Insets insets = new Insets(10);
+        //Insets borderPaneGap = new Insets();
+        //borderPane.setMargin(consoleDisplay, borderPaneGap);
 
         //borderPane.setBottom();
         //AnchorPane anchorPane = new AnchorPane();
