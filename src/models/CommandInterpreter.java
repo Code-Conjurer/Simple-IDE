@@ -17,11 +17,6 @@ public class CommandInterpreter {
     final int MIN_COMMAND_NAME_LENGTH = 1;
     List<CommandBundle> commandBundles;
 
-    /*public CommandInterpreter(CommandBundle... commandBundles){
-        this.commandBundles = new ArrayList<>();
-        this.commandBundles = Arrays.asList(commandBundles);
-    }*/
-
     public CommandInterpreter(){
         this.commandBundles = new ArrayList<>();
         commandBundles.add(new LogCommandBundle());
@@ -71,43 +66,6 @@ public class CommandInterpreter {
             command.execute(log, input.split(" "));
         }
     }
-
-    /*
-    private String[] parseLineArgs(String input){
-        String temp = input.substring(0, input.indexOf('>'));
-        return temp.split(" ");
-    }*/
-/*
-    private String parseCommandNameFromInput(){
-        int spaceMarker;
-        String commandName;
-
-        spaceMarker = input.indexOf(" ");
-        if(spaceMarker == -1)//no " " were found
-            spaceMarker = COMMAND_SIG_LENGTH;
-
-        commandName =  input.substring(COMMAND_SIG_LENGTH, spaceMarker).toLowerCase();//"``someCommand 3 words" -> "someCommands"
-        input = input.substring(spaceMarker);//"``someCommand 3 words" -> " 3 words"
-        input = input.trim();
-        return commandName;
-    }
-
-    private void handleCommandsInArgs(String input)throws CommandNotFoundException{
-
-        int commandMarker = input.indexOf("``");
-        if(commandMarker == -1)
-            return;
-
-        //if(commandMarker > 0 && input.indexOf(commandMarker - 1) == '\\')// '\'
-          //  return;
-
-        //try {
-        handleCommand(input.substring(commandMarker));
-        ///}catch(CommandNotFoundException e){
-           // throw e;
-        //}
-
-    }*/
 
     private Command findCommand(String commandName)throws CommandNotFoundException {
 

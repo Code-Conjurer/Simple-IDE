@@ -23,7 +23,6 @@ public class Compile extends SingleArgCommand {
 
     public Compile() {
         super("compile");
-        //writer = new ConsolePrinter();
         compiler = ToolProvider.getSystemJavaCompiler(); //gets java compiler, returns null otherwise (only having the JRE will return null)
         fileManager = new SimpleJavaFileManager(compiler.getStandardFileManager(null, null, null));
     }
@@ -37,12 +36,6 @@ public class Compile extends SingleArgCommand {
 
         log.clearConsole();
         for(String s : logData){
-            //if(s.contains(" class ")){
-                //mainClassName = s.substring(s.indexOf("class")).split(" ")[1];//awful
-              //  mainClassName = s.substring(s.lastIndexOf(" "), s.indexOf("{")).trim();
-                //System.out.println("class name: " + mainClassName);
-            //}/*else if(s.substring(s.length()-2, s.length()-1).equals("){") ){//TODO: improve this, only works for main(){ ect
-
             program += s +"\n";
         }
         try {
@@ -62,8 +55,6 @@ public class Compile extends SingleArgCommand {
         JavaFileObject compilationUnit =
                 new StringJavaFileObject(name, program);
 
-        /*JavaCompiler.CompilationTask compilationTask = compiler.getTask(
-                writer, fileManager, null, null, null, Arrays.asList(compilationUnit));*/
         JavaCompiler.CompilationTask compilationTask = compiler.getTask(
                 null, fileManager, null, null, null, Arrays.asList(compilationUnit));
 

@@ -10,21 +10,13 @@ public class Log extends Observable{
     private String title;
     private ArrayList<String> data;
     private ConsoleDisplay console;
-    //private Boolean withNewLine;
 
     public Log(ConsoleDisplay console, String title){
         this.title = title;
         this.console = console;
         data = new ArrayList<>(0);
-        //withNewLine = true;
     }
 
-    /*
-    public Log(String title, Boolean withNewLine){
-        this.title = title;
-        data = new ArrayList<>(0);
-        this.withNewLine = withNewLine;
-    }*/
 
     //MODIFIES: this
     //EFFECTS : Adds input to log. adds a new line character to the end if
@@ -61,24 +53,16 @@ public class Log extends Observable{
                 data.set(lineIndex, "");
             else
                 data.set(lineIndex, newLine);
-            setNotify();///////////////////////////////////////////////////////////////////////////////////////////////
+            setNotify();
         //}
     }
-/*
-    public void newLineOff(){
-        withNewLine = false;
-    }
-
-    public void newLineOn(){
-        withNewLine = true;
-    }*/
 
     //REQUIRES: index within bounds of arrayList
     //MODIFIES: this
     //EFFECTS : removes element from arrayList at index
     public void removeLine(int lineIndex){
         data.remove(lineIndex);
-        setNotify();///////////////////////////////////////////////////////////////////////////////////////////////
+        setNotify();
     }
 
     //REQUIRES: index within bounds
@@ -86,11 +70,6 @@ public class Log extends Observable{
     public String getLine(int lineIndex){
         return data.get(lineIndex);
     }
-
-    /*
-    public Boolean getWithNewLine(){
-        return withNewLine;
-    }*/
 
     //EFFECTS : returns arrayList size
     public int getNumberOfLines(){
@@ -154,6 +133,5 @@ public class Log extends Observable{
     public void loadDataWithoutNotify(List<String> data){
         this.data = (ArrayList)data;
     }
-
     //////////////////////////////////////////////////////////
 }

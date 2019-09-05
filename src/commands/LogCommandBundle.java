@@ -7,17 +7,12 @@ import java.util.HashMap;
 
 public class LogCommandBundle extends CommandBundle{
 
-    //HashMap<String, Command> commandLibrary;
-    //ConsoleDisplay console;
-
     public LogCommandBundle(){
-        //this.console = console;
         commandLibrary = new HashMap<>();
 
         Command[] commands = {
                 new Write(),
                 new Compile(),
-                //new ToggleNewLine(log),
                 new Delete(),
                 new Edit(),
                 new Load(),

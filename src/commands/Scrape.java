@@ -38,11 +38,8 @@ public class Scrape extends SingleArgCommand {
 
             while ((line = br.readLine()) != null) {
                 log.addLine(line);
-                //sb.append(line);
-                //sb.append(System.lineSeparator());
             }
 
-            //System.out.println(sb);
         } finally {
 
             if (br != null) {
